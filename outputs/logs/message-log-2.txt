@@ -4,7 +4,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -54,7 +54,7 @@ Twitter: @En_GPT
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -90,7 +90,7 @@ Publish your own book.
 Start a blog.
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -116,7 +116,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -169,7 +169,7 @@ Online Business Ideas: clothing line, dropshipping, sell art, freelance (writing
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -195,7 +195,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -251,7 +251,7 @@ Chosen Business Idea: Start a blog
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -320,7 +320,7 @@ https://www.ryrob.com › Blog
 ‎What is a blog niche? · ‎60+ Blog niche ideas · ‎Brainstorming blog niche ideas
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -346,7 +346,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -405,7 +405,7 @@ Profitable Blog Niches: digital marketing, blogging and making money online, hea
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -431,7 +431,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -493,7 +493,7 @@ Chosen Niche: Personal Finance and Investing
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -522,7 +522,7 @@ Recommendation:
 """ Use https://substack.com instead of WordPress for simplicity. """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -550,7 +550,7 @@ USER:
 <div class="signup-box-wrap"><h2>Set up your profile</h2><div class="signup-box setup-profile-box"><div class="profile-updater"><h2 class="page-title profile-updater-title"></h2><div class="profile-photo-wrap"><div class="profile-photo-image" style="background-image: url(&quot;https://substackcdn.com/image/fetch/w_144,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Favatars%2Fgreen.png&quot;);"></div><button tabindex="0" type="button" class="button"><input type="file" name="photo" accept="image/*"><div class="add-photo-fab"><div class="add-photo-fab-inner"><svg role="img" width="12" height="12" viewBox="0 0 14 14" fill="#fff" stroke-width="1.8" stroke="#fff" xmlns="http://www.w3.org/2000/svg" style="height: 12px; width: 12px;"><g><title></title><path d="M7 0V7M7 14V7M7 7H14H0"></path></g></svg></div></div></button></div><form class="form " action="/api/v1/user/profile" method="post" novalidate=""><label for="name">Your name</label><input autofocus="true" type="text" class="profile-name" placeholder="Your name…" name="name" id="name"><label for="bio">Your bio</label><textarea class="profile-bio" placeholder="Say something about yourself…" name="bio" id="bio"></textarea><input type="hidden" name="photo_url" value="https://substack.com/img/avatars/green.png"><input type="hidden" name="user_id" value="134760978"><input type="hidden" name="needs_photo" value="false"><input type="hidden" name="token"><input type="hidden" name="complete" value="true"><div id="error-container"></div><p class="left hidden">0 subscriptions will be displayed on your profile (<a>edit</a>)</p><div class="modal-ctas"><p class="skip hidden"><a class="small">Skip for now</a></p><button tabindex="0" class="button primary" type="submit">Continue</button></div></form></div><div class="modal typography out gone wide popup" role="dialog"><div class="modal-table"><div class="modal-row"><div class="modal-cell modal-content"><div class="container"><div class="edit-visibility-modal"><h3>Subscriptions displayed on profile</h3><p>Subscriptions appear on your profile by default, but you can choose to hide some or all of them.</p><div class="edit-sub-visibility-form"><div class="bulk-action-row"><button class="small">Hide all</button></div><div class="edit-sub-visibility-frame"></div><div class="modal-ctas"><button tabindex="0" class="button primary" type="button">Done</button></div></div></div></div></div></div></div></div></div></div>
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -583,7 +583,7 @@ financegpt
 Continue
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -625,7 +625,7 @@ USER:
 }
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -643,7 +643,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -705,7 +705,7 @@ Chosen Niche: Personal Finance and Investing
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -731,7 +731,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -796,7 +796,7 @@ Substack Blog: financegpt.substack.com
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -814,7 +814,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -849,9 +849,9 @@ Real Estate & REITs.
 Cryptocurrency.
 3/02/2023
 
-7 Best Types of Investments in 2023 | Entrepreneur Guide
+7 Best Types of Investments in 2023 | Start Guide
 
-Entrepreneur
+Start
 https://www.entrepreneur.com › guide › investing › best-...
 About featured snippets
 •
@@ -863,7 +863,7 @@ What is the stock trend for 2023?
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -889,7 +889,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -958,7 +958,7 @@ Top Personal Finance and Investing Topics: 1. High Yield Savings Accounts, 2. Sh
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -976,7 +976,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1004,7 +1004,7 @@ USER:
 Result saved to file: "post1_output.txt"
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -1022,7 +1022,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1052,7 +1052,7 @@ Result saved to "post2_output.txt"
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -1121,7 +1121,7 @@ Top Personal Finance and Investing Topics: 1. High Yield Savings Accounts, 2. Sh
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1148,7 +1148,7 @@ USER:
 Suggestion: """ Move on from blog post writing for now, return to it later. """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -1166,7 +1166,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1256,7 +1256,7 @@ https://blog.hubspot.com › blog-promotion-tactics
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -1274,7 +1274,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1303,7 +1303,7 @@ Result saved to "post2_output.txt"
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -1375,7 +1375,7 @@ Promotion Strategies: 1. Guest posting on other blogs, 2. Paid advertising campa
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1402,7 +1402,7 @@ USER:
 Result saved to "guest_post_email.txt"
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -1420,7 +1420,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1446,7 +1446,7 @@ USER:
 Result: 404 - page not found
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -1473,7 +1473,7 @@ USER:
 
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 
 """
@@ -1483,7 +1483,7 @@ USER:
 
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 
 """
