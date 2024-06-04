@@ -12,6 +12,7 @@ outputs/*
 ai_settings.yaml
 .vscode
 .idea/*
+.venv
 start-gpt.json
 log.txt
 
