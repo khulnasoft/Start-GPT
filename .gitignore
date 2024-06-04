@@ -1,0 +1,16 @@
+scripts/keys.py
+scripts/*json
+scripts/node_modules/
+scripts/__pycache__/keys.cpython-310.pyc
+package-lock.json
+*.pyc
+start_gpt_workspace/*
+*.mpeg
+.env
+*venv/*
+outputs/*
+ai_settings.yaml
+.vscode
+.idea/*
+start-gpt.json
+log.txt
