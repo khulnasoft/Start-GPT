@@ -12,5 +12,11 @@ outputs/*
 ai_settings.yaml
 .vscode
 .idea/*
+.venv
 start-gpt.json
 log.txt
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
