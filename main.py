@@ -1,1 +1,1 @@
-from scripts.main import main
+from startgpt import main
