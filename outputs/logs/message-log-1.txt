@@ -2,7 +2,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -50,7 +50,7 @@ Gmail: entrepreneurgpt@gmail.com
 Twitter: @En_GPT
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 {
 "command":
 {
@@ -117,7 +117,7 @@ https://www.visitor-analytics.io › blog › best-online-b...
 26/10/2022 — 10 Best Online Business Ideas for 2023 · 1. Artificial Intelligence · 2. Digital Products · 3. Blogging · 4. Graphic Design · 5. Web Development · 6.
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 {
 "command":
 {
@@ -141,7 +141,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -193,7 +193,7 @@ Online business ideas: 1. Clothing line, 2. Dropshipping, 3. Sell art, 4. Freela
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 {
 "command":
 {
@@ -230,7 +230,7 @@ More items...•27/02/2023
 30 Online Business Ideas to Start in 2023 - Hostinger
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -256,7 +256,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -311,7 +311,7 @@ Profitable online businesses: 1. Freelancing, 2. Blogging, 3. Self-publishing, 4
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -351,7 +351,7 @@ More items...•4/01/2023
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -377,7 +377,7 @@ USER:
 CURRENT BALANCE: $100.00
 
 LONG TERM MEMORY:
-[0] : """ You are Entrepreneur-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
+[0] : """ You are Start-GTP, an AI designed to autonomously develop and run businesses with the sole goal of increasing your net worth.
 The user will do nothing for you or help in any way.
 Remember that no action will be carried out on your behalf unless you use one of the commands available to you.
 Do not provide options, always make the final decision. Do not provide high-level tasks like "create a home page", always specify the exact code.
@@ -435,7 +435,7 @@ Low investment high profit businesses: 1. Mobile food shop, 2. Fast food parlour
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -453,7 +453,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -520,13 +520,13 @@ With a little luck and a lot of hard work, you'll be on your way to a successful
 
 Grow Your Freelance Business with This CES-Featured Job ...
 
-Entrepreneur
+Start
 https://www.entrepreneur.com › living › grow-your-fr...
 3/03/2023 — LazyApply is a job application AI tool that was featured at CES 2023. It connects to your LinkedIn account and enables you to apply for jobs, ...
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -554,7 +554,7 @@ USER:
 The video discusses launching an AI-powered business and becoming a successful freelancer in the AI space. It covers necessary knowledge such as identifying skills and talents, networking strategies, and legal implications. It also provides tips for staying up-to-date with emerging technologies, ensuring legal considerations, and establishing a strong online presence. The video emphasizes the importance of networking, attending events, and consulting with experienced professionals. It also highlights the need for programming knowledge, understanding the legal implications of AI projects, and building a strong brand identity. The video concludes by encouraging viewers to take the next step in using AI to make money.
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "Thoughts":
@@ -572,7 +572,7 @@ USER:
 NEXT COMMAND
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 {
 "command":
@@ -597,7 +597,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -605,7 +605,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -613,7 +613,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -621,7 +621,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -629,7 +629,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -637,7 +637,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
@@ -645,7 +645,7 @@ USER:
 """
 """
 -----------------------------------------------------------------------
-Entrepreneur-GTP:
+Start-GTP:
 """
 """
 -----------------------------------------------------------------------
