@@ -89,12 +89,12 @@ You can also build this into a docker image and run it:
 
 ```
 docker build -t startgpt .
-docker run -it --env-file=./.env -v $PWD/auto_gpt_workspace:/app/auto_gpt_workspace startgpt
+docker run -it --env-file=./.env -v $PWD/start_gpt_workspace:/app/start_gpt_workspace startgpt
 ```
 
 You can pass extra arguments, for instance, running with `--gpt3only` and `--continuous` mode:
 ```
-docker run -it --env-file=./.env -v $PWD/auto_gpt_workspace:/app/auto_gpt_workspace startgpt --gpt3only --continuous
+docker run -it --env-file=./.env -v $PWD/start_gpt_workspace:/app/start_gpt_workspace startgpt --gpt3only --continuous
 ```
 ### Command Line Arguments
 Here are some common arguments you can use when running Start-GPT:
@@ -271,7 +271,7 @@ You could for example download the documentation of an API, a Github repository,
 Memories will be available to the AI immediately as they are ingested, even if ingested while Start-GPT is running.
 
 In the example above, the script initializes the memory, ingests all files within the seed_data directory into memory with an overlap between chunks of 200 and a maximum length of each chunk of 4000.
-Note that you can also use the --file argument to ingest a single file into memory and that the script will only ingest files within the auto_gpt_workspace directory.
+Note that you can also use the --file argument to ingest a single file into memory and that the script will only ingest files within the start_gpt_workspace directory.
 
 You can adjust the max_length and overlap parameters to fine-tune the way the docuents are presented to the AI when it "recall" that memory:
 
@@ -347,8 +347,8 @@ Stay up-to-date with the latest news, updates, and insights about Start-GPT by f
 We look forward to connecting with you and hearing your thoughts, ideas, and experiences with Start-GPT. Join us on Twitter and let's explore the future of AI together!
 
 <p align="center">
-  <a href="https://star-history.com/#khulnasoft/auto-gpt&Date">
-    <img src="https://api.star-history.com/svg?repos=khulnasoft/auto-gpt&type=Date" alt="Star History Chart">
+  <a href="https://star-history.com/#khulnasoft/start-gpt&Date">
+    <img src="https://api.star-history.com/svg?repos=khulnasoft/start-gpt&type=Date" alt="Star History Chart">
   </a>
 </p>
 

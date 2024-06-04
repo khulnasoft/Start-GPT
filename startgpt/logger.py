@@ -30,7 +30,7 @@ class Logger(metaclass=Singleton):
         log_file = "activity.log"
         error_file = "error.log"
 
-        console_formatter = AutoGptFormatter("%(title_color)s %(message)s")
+        console_formatter = StartGptFormatter("%(title_color)s %(message)s")
 
         # Create a handler for console which simulate typing
         self.typing_console_handler = TypingConsoleHandler()
@@ -45,7 +45,7 @@ class Logger(metaclass=Singleton):
         # Info handler in activity.log
         self.file_handler = logging.FileHandler(os.path.join(log_dir, log_file))
         self.file_handler.setLevel(logging.DEBUG)
-        info_formatter = AutoGptFormatter(
+        info_formatter = StartGptFormatter(
             "%(asctime)s %(levelname)s %(title)s %(message_no_color)s"
         )
         self.file_handler.setFormatter(info_formatter)
@@ -53,7 +53,7 @@ class Logger(metaclass=Singleton):
         # Error handler error.log
         error_handler = logging.FileHandler(os.path.join(log_dir, error_file))
         error_handler.setLevel(logging.ERROR)
-        error_formatter = AutoGptFormatter(
+        error_formatter = StartGptFormatter(
             "%(asctime)s %(levelname)s %(module)s:%(funcName)s:%(lineno)d %(title)s"
             " %(message_no_color)s"
         )
@@ -164,7 +164,7 @@ class ConsoleHandler(logging.StreamHandler):
             self.handleError(record)
 
 
-class AutoGptFormatter(logging.Formatter):
+class StartGptFormatter(logging.Formatter):
     """
     Allows to handle custom placeholders 'title_color' and 'message_no_color'.
     To use this formatter, make sure to pass 'color', 'title' as log extras.

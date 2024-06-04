@@ -1,5 +1,5 @@
 [project]
-name = "auto-gpt"
+name = "start-gpt"
 version = "0.1.0"
 description = "A GPT based ai agent"
 readme = "README.md"

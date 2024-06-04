@@ -11,7 +11,7 @@ from startgpt.config import Config
 
 cfg = Config()
 
-working_directory = "auto_gpt_workspace"
+working_directory = "start_gpt_workspace"
 
 
 def generate_image(prompt):

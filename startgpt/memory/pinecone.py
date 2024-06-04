@@ -13,7 +13,7 @@ class PineconeMemory(MemoryProviderSingleton):
         dimension = 1536
         metric = "cosine"
         pod_type = "p1"
-        table_name = "auto-gpt"
+        table_name = "start-gpt"
         # this assumes we don't start with memory.
         # for now this works.
         # we'll need a more complicated and robust system if we want to start with memory.

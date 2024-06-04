@@ -12,7 +12,7 @@ def MockConfig():
             "debug_mode": False,
             "continuous_mode": False,
             "speak_mode": False,
-            "memory_index": "auto-gpt",
+            "memory_index": "start-gpt",
         },
     )
 

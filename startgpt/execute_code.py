@@ -4,7 +4,7 @@ import subprocess
 import docker
 from docker.errors import ImageNotFound
 
-WORKSPACE_FOLDER = "auto_gpt_workspace"
+WORKSPACE_FOLDER = "start_gpt_workspace"
 
 
 def execute_python_file(file):
