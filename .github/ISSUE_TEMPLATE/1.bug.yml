@@ -22,7 +22,7 @@ body:
     attributes:
       label: ⚠️ Search for existing issues first ⚠️
       description: >
-        Please [search the history](https://github.com/Torantulino/Start-GPT/issues)
+        Please [search the history](https://github.com/khulnasoft/Start-GPT/issues)
         to see if an issue already exists for the same problem.
       options:
         - label: I have searched the existing issues, and there is no existing issue for my problem

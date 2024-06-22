@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "agpt"
 version = "0.4.2"
 authors = [
-  { name="Torantulino", email="support@agpt.co" },
+  { name="khulnasoft", email="support@agpt.co" },
 ]
 readme = "README.md"
 requires-python = ">=3.10"

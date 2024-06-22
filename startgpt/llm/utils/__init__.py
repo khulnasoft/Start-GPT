@@ -29,7 +29,7 @@ def call_ai_function(
     """Call an AI function
 
     This is a magic function that can do anything with no-code. See
-    https://github.com/Torantulino/AI-Functions for more info.
+    https://github.com/khulnasoft/AI-Functions for more info.
 
     Args:
         function (str): The function to call

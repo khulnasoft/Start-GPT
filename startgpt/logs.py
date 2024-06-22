@@ -153,7 +153,7 @@ class Logger(metaclass=Singleton):
         if not additionalText:
             additionalText = (
                 "Please ensure you've setup and configured everything"
-                " correctly. Read https://github.com/Torantulino/Start-GPT#readme to "
+                " correctly. Read https://github.com/khulnasoft/Start-GPT#readme to "
                 "double check. You can also create a github issue or join the discord"
                 " and ask there!"
             )

@@ -64,7 +64,7 @@ Please see the [documentation][docs] for full setup instructions and configurati
 <h2 align="center"> 💖 Help Fund Start-GPT's Development 💖</h2>
 <p align="center">
 If you can spare a coffee, you can help to cover the costs of developing Start-GPT and help to push the boundaries of fully startnomous AI!
-Your support is greatly appreciated. Development of this free, open-source project is made possible by all the <a href="https://github.com/khulnasoft/Start-GPT/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/Torantulino">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/Torantulino">click here</a>.
+Your support is greatly appreciated. Development of this free, open-source project is made possible by all the <a href="https://github.com/khulnasoft/Start-GPT/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/khulnasoft">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/khulnasoft">click here</a>.
 </p>
 
 
@@ -142,7 +142,7 @@ Stay up-to-date with the latest news, updates, and insights about Start-GPT by f
 We look forward to connecting with you and hearing your thoughts, ideas, and experiences with Start-GPT. Join us on Twitter and let's explore the future of AI together!
 
 <p align="center">
-  <a href="https://star-history.com/#Torantulino/start-gpt&Date">
-    <img src="https://api.star-history.com/svg?repos=Torantulino/start-gpt&type=Date" alt="Star History Chart">
+  <a href="https://star-history.com/#khulnasoft/start-gpt&Date">
+    <img src="https://api.star-history.com/svg?repos=khulnasoft/start-gpt&type=Date" alt="Star History Chart">
   </a>
 </p>
