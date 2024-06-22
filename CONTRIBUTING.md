@@ -1,64 +1,14 @@
+We maintain a knowledgebase at this [wiki](https://github.com/khulnasoft/Nexus/wiki)
 
-To contribute to this GitHub project, you can follow these steps:
+We would like to say "We value all contributions". After all, we are an open-source project, so we should say something fluffy like this, right?
 
-1. Fork the repository you want to contribute to by clicking the "Fork" button on the project page.
+However the reality is that some contributions are SUPER-valuable, while others create more trouble than they are worth and actually _create_ work for the core team.
 
-2. Clone the repository to your local machine using the following command:
+If you wish to contribute, please look through the wiki [contributing](https://github.com/khulnasoft/Nexus/wiki/Contributing) page.
 
-```
-git clone https://github.com/<YOUR-GITHUB-USERNAME>/Start-GPT
-```
-3. Install the project requirements
-```
-pip install -r requirements.txt
-```
-4. Install pre-commit hooks
-```
-pre-commit install
-```
-5. Create a new branch for your changes using the following command:
+If you wish to involve with the project (beyond just contributing PRs), please read the wiki [catalyzing](https://github.com/khulnasoft/Nexus/wiki/Catalyzing) page.
 
-```
-git checkout -b "branch-name"
-```
-6. Make your changes to the code or documentation.
-- Example: Improve User Interface or Add Documentation.
+In fact, why not just look through the whole wiki (it's only a few pages) and hop on our discord (you'll find it in the wiki).
 
-
-7. Add the changes to the staging area using the following command:
-```
-git add .
-```
-
-8. Commit the changes with a meaningful commit message using the following command:
-```
-git commit -m "your commit message"
-```
-9. Push the changes to your forked repository using the following command:
-```
-git push origin branch-name
-```
-10. Go to the GitHub website and navigate to your forked repository.
-
-11. Click the "New pull request" button.
-
-12. Select the branch you just pushed to and the branch you want to merge into on the original repository.
-
-13. Add a description of your changes and click the "Create pull request" button.
-
-14. Wait for the project maintainer to review your changes and provide feedback.
-
-15. Make any necessary changes based on feedback and repeat steps 5-12 until your changes are accepted and merged into the main project.
-
-16. Once your changes are merged, you can update your forked repository and local copy of the repository with the following commands:
-
-```
-git fetch upstream
-git checkout master
-git merge upstream/master
-```
-Finally, delete the branch you created with the following command:
-```
-git branch -d branch-name
-```
-That's it you made it 🐣⭐⭐
+❤️ & 🔆
+The team @ Start-GPT

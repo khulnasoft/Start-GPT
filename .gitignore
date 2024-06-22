@@ -1,16 +1,10 @@
 ## Original ignores
 startgpt/keys.py
-startgpt/*json
-startgpt/node_modules/
-startgpt/__pycache__/keys.cpython-310.pyc
-package-lock.json
-*.pyc
-start_gpt_workspace/*
+startgpt/*.json
+**/start_gpt_workspace/*
 *.mpeg
 .env
 azure.yaml
-*venv/*
-outputs/*
 ai_settings.yaml
 last_run_ai_settings.yaml
 .vscode
@@ -19,6 +13,10 @@ start-gpt.json
 log.txt
 log-ingestion.txt
 logs
+*.log
+*.mp3
+mem.sqlite3
+venvStartGPT
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -33,7 +31,8 @@ __pycache__/
 build/
 develop-eggs/
 dist/
-plugins/
+/plugins/
+plugins_config.yaml
 downloads/
 eggs/
 .eggs/
@@ -93,6 +92,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+site/
 
 # PyBuilder
 target/
@@ -125,13 +125,13 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.direnv/
 .env
 .venv
 env/
-venv/
+venv*/
 ENV/
 env.bak/
-venv.bak/
 
 # Spyder project settings
 .spyderproject
@@ -152,4 +152,11 @@ dmypy.json
 .pyre/
 llama-*
 vicuna-*
-**/.DS_Store
+
+# mac
+.DS_Store
+
+openai/
+
+# news
+CURRENT_BULLETIN.md

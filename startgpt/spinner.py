@@ -1,3 +1,4 @@
+"""A simple spinner module"""
 import itertools
 import sys
 import threading
@@ -7,21 +8,39 @@ import time
 class Spinner:
     """A simple spinner class"""
 
-    def __init__(self, message="Loading...", delay=0.1):
-        """Initialize the spinner class"""
+    def __init__(
+        self,
+        message: str = "Loading...",
+        delay: float = 0.1,
+        plain_output: bool = False,
+    ) -> None:
+        """Initialize the spinner class
+
+        Args:
+            message (str): The message to display.
+            delay (float): The delay between each spinner update.
+            plain_output (bool): Whether to display the spinner or not.
+        """
+        self.plain_output = plain_output
         self.spinner = itertools.cycle(["-", "/", "|", "\\"])
         self.delay = delay
         self.message = message
         self.running = False
         self.spinner_thread = None
 
-    def spin(self):
+    def spin(self) -> None:
         """Spin the spinner"""
+        if self.plain_output:
+            self.print_message()
+            return
         while self.running:
-            sys.stdout.write(f"{next(self.spinner)} {self.message}\r")
-            sys.stdout.flush()
+            self.print_message()
             time.sleep(self.delay)
-            sys.stdout.write(f"\r{' ' * (len(self.message) + 2)}\r")
+
+    def print_message(self):
+        sys.stdout.write(f"\r{' ' * (len(self.message) + 2)}\r")
+        sys.stdout.write(f"{next(self.spinner)} {self.message}\r")
+        sys.stdout.flush()
 
     def __enter__(self):
         """Start the spinner"""
@@ -29,10 +48,29 @@ class Spinner:
         self.spinner_thread = threading.Thread(target=self.spin)
         self.spinner_thread.start()
 
-    def __exit__(self, exc_type, exc_value, exc_traceback):
-        """Stop the spinner"""
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback) -> None:
+        """Stop the spinner
+
+        Args:
+            exc_type (Exception): The exception type.
+            exc_value (Exception): The exception value.
+            exc_traceback (Exception): The exception traceback.
+        """
         self.running = False
         if self.spinner_thread is not None:
             self.spinner_thread.join()
         sys.stdout.write(f"\r{' ' * (len(self.message) + 2)}\r")
         sys.stdout.flush()
+
+    def update_message(self, new_message, delay=0.1):
+        """Update the spinner message
+        Args:
+            new_message (str): New message to display.
+            delay (float): The delay in seconds between each spinner update.
+        """
+        self.delay = delay
+        self.message = new_message
+        if self.plain_output:
+            self.print_message()
