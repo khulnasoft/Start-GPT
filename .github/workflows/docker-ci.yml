@@ -36,7 +36,7 @@ jobs:
 
     - id: build
       name: Build image
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v6
       with:
         build-args: BUILD_TYPE=${{ matrix.build-type }}
         tags: ${{ env.IMAGE_NAME }}
@@ -90,7 +90,7 @@ jobs:
 
       - id: build
         name: Build image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           build-args: BUILD_TYPE=dev  # include pytest
           tags: ${{ env.IMAGE_NAME }}
