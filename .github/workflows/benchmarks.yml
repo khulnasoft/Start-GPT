@@ -60,14 +60,14 @@ jobs:
 
       - name: Upload logs as artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-logs-${{ matrix.config.task-name }}
           path: logs/
 
       - name: Upload cassettes as artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cassettes-${{ matrix.config.task-name }}
           path: tests/Start-GPT-test-cassettes/
