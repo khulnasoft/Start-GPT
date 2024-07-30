@@ -166,7 +166,7 @@ def get_legal_warning() -> str:
 ### PLEASE READ THIS DISCLAIMER AND INDEMNIFICATION AGREEMENT CAREFULLY BEFORE USING THE STARTGPT SYSTEM. BY USING THE STARTGPT SYSTEM, YOU AGREE TO BE BOUND BY THIS AGREEMENT.
 
 ## Introduction
-StartGPT (the "System") is a project that connects a GPT-like artificial intelligence system to the internet and allows it to startmate tasks. While the System is designed to be useful and efficient, there may be instances where the System could perform actions that may cause harm or have unintended consequences.
+StartGPT (the "System") is a project that connects a GPT-like artificial intelligence system to the internet and allows it to automate tasks. While the System is designed to be useful and efficient, there may be instances where the System could perform actions that may cause harm or have unintended consequences.
 
 ## No Liability for Actions of the System
 The developers, contributors, and maintainers of the StartGPT project (collectively, the "Project Parties") make no warranties or representations, express or implied, about the System's performance, accuracy, reliability, or safety. By using the System, you understand and agree that the Project Parties shall not be liable for any actions taken by the System or any consequences resulting from such actions.

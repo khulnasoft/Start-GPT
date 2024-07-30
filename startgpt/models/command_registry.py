@@ -2,7 +2,7 @@ import importlib
 import inspect
 from typing import Any, Callable
 
-from startgpt.command_decorator import START_GPT_COMMAND_IDENTIFIER
+from startgpt.command_decorator import AUTO_GPT_COMMAND_IDENTIFIER
 from startgpt.logs import logger
 from startgpt.models.command import Command
 
@@ -71,7 +71,7 @@ class CommandRegistry:
         Imports the specified Python module containing command plugins.
 
         This method imports the associated module and registers any functions or
-        classes that are decorated with the `START_GPT_COMMAND_IDENTIFIER` attribute
+        classes that are decorated with the `AUTO_GPT_COMMAND_IDENTIFIER` attribute
         as `Command` objects. The registered `Command` objects are then added to the
         `commands` dictionary of the `CommandRegistry` object.
 
@@ -84,8 +84,8 @@ class CommandRegistry:
         for attr_name in dir(module):
             attr = getattr(module, attr_name)
             # Register decorated functions
-            if hasattr(attr, START_GPT_COMMAND_IDENTIFIER) and getattr(
-                attr, START_GPT_COMMAND_IDENTIFIER
+            if hasattr(attr, AUTO_GPT_COMMAND_IDENTIFIER) and getattr(
+                attr, AUTO_GPT_COMMAND_IDENTIFIER
             ):
                 self.register(attr.command)
             # Register command classes

@@ -29,9 +29,9 @@ repos:
 
   - repo: local
     hooks:
-      - id: startflake
-        name: startflake
-        entry: startflake --in-place --remove-all-unused-imports --recursive --ignore-init-module-imports --ignore-pass-after-docstring startgpt tests
+      - id: autoflake
+        name: autoflake
+        entry: autoflake --in-place --remove-all-unused-imports --recursive --ignore-init-module-imports --ignore-pass-after-docstring startgpt tests
         language: python
         types: [ python ]
       - id: pytest-check

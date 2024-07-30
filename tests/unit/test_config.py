@@ -2,6 +2,7 @@
 Test cases for the config class, which handles the configuration settings
 for the AI and ensures it behaves as a singleton.
 """
+
 from unittest import mock
 from unittest.mock import patch
 
@@ -148,7 +149,9 @@ def test_missing_azure_config(config: Config, workspace: Workspace):
 def test_create_config_gpt4only(config: Config) -> None:
     fast_llm_model = config.fast_llm_model
     smart_llm_model = config.smart_llm_model
-    with mock.patch("startgpt.llm.api_manager.ApiManager.get_models") as mock_get_models:
+    with mock.patch(
+        "startgpt.llm.api_manager.ApiManager.get_models"
+    ) as mock_get_models:
         mock_get_models.return_value = [{"id": GPT_4_MODEL}]
         create_config(
             config=config,
@@ -177,7 +180,9 @@ def test_create_config_gpt4only(config: Config) -> None:
 def test_create_config_gpt3only(config: Config) -> None:
     fast_llm_model = config.fast_llm_model
     smart_llm_model = config.smart_llm_model
-    with mock.patch("startgpt.llm.api_manager.ApiManager.get_models") as mock_get_models:
+    with mock.patch(
+        "startgpt.llm.api_manager.ApiManager.get_models"
+    ) as mock_get_models:
         mock_get_models.return_value = [{"id": GPT_3_MODEL}]
         create_config(
             config=config,

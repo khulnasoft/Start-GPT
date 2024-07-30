@@ -1,6 +1,7 @@
 """
 This module contains the configuration classes for StartGPT.
 """
+
 from startgpt.config.ai_config import AIConfig
 from startgpt.config.config import Config, check_openai_api_key
 

@@ -1,4 +1,5 @@
 """Text processing functions"""
+
 from math import ceil
 from typing import Optional
 
@@ -108,7 +109,7 @@ def summarize_text(
             "\n\n\n"
             f'LITERAL TEXT: """{text}"""'
             "\n\n\n"
-            "CONCISE SUMMARY: The text is best summarized as"
+            "CONCISE SUMMARY: The text is best summarized as",
             # "Only respond with a concise summary or description of the user message."
         )
 

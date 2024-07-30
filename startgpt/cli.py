@@ -1,4 +1,5 @@
 """Main script for the startgpt package."""
+
 import click
 
 
@@ -13,7 +14,7 @@ import click
 @click.option(
     "--ai-settings",
     "-C",
-    help="Specifies which ai_settings.yaml file to use, will also startmatically skip the re-prompt.",
+    help="Specifies which ai_settings.yaml file to use, will also automatically skip the re-prompt.",
 )
 @click.option(
     "--prompt-settings",
@@ -90,10 +91,10 @@ def main(
     Start an Start-GPT assistant.
     """
     # Put imports inside function to avoid importing everything when starting the CLI
-    from startgpt.main import run_start_gpt
+    from startgpt.main import run_auto_gpt
 
     if ctx.invoked_subcommand is None:
-        run_start_gpt(
+        run_auto_gpt(
             continuous,
             continuous_limit,
             ai_settings,

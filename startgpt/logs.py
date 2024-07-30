@@ -1,4 +1,5 @@
 """Logging module for Start-GPT."""
+
 import logging
 import os
 import random
@@ -153,7 +154,7 @@ class Logger(metaclass=Singleton):
         if not additionalText:
             additionalText = (
                 "Please ensure you've setup and configured everything"
-                " correctly. Read https://github.com/khulnasoft/Start-GPT#readme to "
+                " correctly. Read https://github.com/khulnasoft-bot/Start-GPT#readme to "
                 "double check. You can also create a github issue or join the discord"
                 " and ask there!"
             )

@@ -12,13 +12,11 @@ Embedding = list[np.float32] | np.ndarray[Any, np.dtype[np.float32]]
 
 
 @overload
-def get_embedding(input: str | TText) -> Embedding:
-    ...
+def get_embedding(input: str | TText) -> Embedding: ...
 
 
 @overload
-def get_embedding(input: list[str] | list[TText]) -> list[Embedding]:
-    ...
+def get_embedding(input: list[str] | list[TText]) -> list[Embedding]: ...
 
 
 def get_embedding(

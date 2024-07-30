@@ -82,9 +82,11 @@ class AIConfig:
         ai_name = config_params.get("ai_name", "")
         ai_role = config_params.get("ai_role", "")
         ai_goals = [
-            str(goal).strip("{}").replace("'", "").replace('"', "")
-            if isinstance(goal, dict)
-            else str(goal)
+            (
+                str(goal).strip("{}").replace("'", "").replace('"', "")
+                if isinstance(goal, dict)
+                else str(goal)
+            )
             for goal in config_params.get("ai_goals", [])
         ]
         api_budget = config_params.get("api_budget", 0.0)

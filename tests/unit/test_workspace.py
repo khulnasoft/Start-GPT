@@ -5,7 +5,7 @@ import pytest
 
 from startgpt.workspace import Workspace
 
-_WORKSPACE_ROOT = Path("home/users/monty/start_gpt_workspace")
+_WORKSPACE_ROOT = Path("home/users/monty/auto_gpt_workspace")
 
 _ACCESSIBLE_PATHS = [
     Path("."),
@@ -23,12 +23,12 @@ _INACCESSIBLE_PATHS = (
         # Takes us out of the workspace
         Path(".."),
         Path("../test_file.txt"),
-        Path("../not_start_gpt_workspace"),
-        Path("../not_start_gpt_workspace/test_file.txt"),
+        Path("../not_auto_gpt_workspace"),
+        Path("../not_auto_gpt_workspace/test_file.txt"),
         Path("test_folder/../.."),
         Path("test_folder/../../test_file.txt"),
-        Path("test_folder/../../not_start_gpt_workspace"),
-        Path("test_folder/../../not_start_gpt_workspace/test_file.txt"),
+        Path("test_folder/../../not_auto_gpt_workspace"),
+        Path("test_folder/../../not_auto_gpt_workspace/test_file.txt"),
     ]
     + [
         # Contains null bytes

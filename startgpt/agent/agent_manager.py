@@ -1,4 +1,5 @@
 """Agent manager for managing GPT agents"""
+
 from __future__ import annotations
 
 from startgpt.config import Config
@@ -12,9 +13,9 @@ class AgentManager(metaclass=Singleton):
 
     def __init__(self, config: Config):
         self.next_key = 0
-        self.agents: dict[
-            int, tuple[str, list[Message], str]
-        ] = {}  # key, (task, full_message_history, model)
+        self.agents: dict[int, tuple[str, list[Message], str]] = (
+            {}
+        )  # key, (task, full_message_history, model)
         self.config = config
 
     # Create new GPT agent

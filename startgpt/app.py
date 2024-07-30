@@ -1,4 +1,5 @@
 """ Command and Control """
+
 import json
 from typing import Dict
 

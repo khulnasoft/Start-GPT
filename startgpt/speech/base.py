@@ -1,4 +1,5 @@
 """Base class for all voice classes."""
+
 import abc
 import re
 from threading import Lock

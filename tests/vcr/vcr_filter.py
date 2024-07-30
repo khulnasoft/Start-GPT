@@ -49,9 +49,9 @@ def replace_timestamp_in_request(request: Any) -> Any:
 
     if "messages" not in body:
         return request
-    body[
-        "max_tokens"
-    ] = 0  # this field is inconsistent between requests and not used at the moment.
+    body["max_tokens"] = (
+        0  # this field is inconsistent between requests and not used at the moment.
+    )
     for message in body["messages"]:
         if "content" in message and "role" in message:
             if message["role"] == "system":

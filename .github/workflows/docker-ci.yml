@@ -109,7 +109,7 @@ jobs:
           set +e
           test_output=$(
             docker run --env CI --env OPENAI_API_KEY --entrypoint python ${{ env.IMAGE_NAME }} -m \
-            pytest -n start --cov=startgpt --cov-branch --cov-report term-missing \
+            pytest -n auto --cov=startgpt --cov-branch --cov-report term-missing \
               tests/unit tests/integration 2>&1
           )
           test_failure=$?

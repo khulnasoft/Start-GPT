@@ -1,7 +1,8 @@
 """This is the Test plugin for Start-GPT."""
+
 from typing import Any, Dict, List, Optional, Tuple, TypeVar
 
-from start_gpt_plugin_template import StartGPTPluginTemplate
+from auto_gpt_plugin_template import StartGPTPluginTemplate
 
 PromptGenerator = TypeVar("PromptGenerator")
 

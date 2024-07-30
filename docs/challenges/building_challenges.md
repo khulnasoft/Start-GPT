@@ -44,7 +44,7 @@ def kubernetes_agent(
     # Define all the settings of our challenged agent
     ai_config = AIConfig(
         ai_name="Kubernetes",
-        ai_role="an startnomous agent that specializes in creating Kubernetes deployment templates.",
+        ai_role="an autonomous agent that specializes in creating Kubernetes deployment templates.",
         ai_goals=[
             "Write a simple kubernetes deployment file and save it as a kube.yaml.",
         ],

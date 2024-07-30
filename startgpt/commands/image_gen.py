@@ -1,4 +1,5 @@
 """ Image Generation Module for StartGPT."""
+
 import io
 import json
 import time

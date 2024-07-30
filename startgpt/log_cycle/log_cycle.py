@@ -32,7 +32,7 @@ class LogCycleHandler:
         log_directory = logger.get_log_directory()
 
         if os.environ.get("OVERWRITE_DEBUG") == "1":
-            outer_folder_name = "start_gpt"
+            outer_folder_name = "auto_gpt"
         else:
             ai_name_short = self.get_agent_short_name(ai_name)
             outer_folder_name = f"{created_at}_{ai_name_short}"

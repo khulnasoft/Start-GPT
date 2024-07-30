@@ -28,7 +28,7 @@ def model():
     return "gpt-3.5-turbo"
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def mock_create_chat_completion(mocker, config):
     mock_create_chat_completion = mocker.patch(
         "startgpt.agent.agent_manager.create_chat_completion",

@@ -9,13 +9,13 @@ from startgpt.llm.providers.openai import OPEN_AI_CHAT_MODELS, OPEN_AI_EMBEDDING
 api_manager = ApiManager()
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def reset_api_manager():
     api_manager.reset()
     yield
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def mock_costs(mocker: MockerFixture):
     mocker.patch.multiple(
         OPEN_AI_CHAT_MODELS["gpt-3.5-turbo"],

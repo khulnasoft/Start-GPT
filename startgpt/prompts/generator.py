@@ -1,4 +1,5 @@
 """ A module for generating custom prompt strings."""
+
 import json
 from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional
 

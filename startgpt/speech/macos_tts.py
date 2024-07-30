@@ -1,4 +1,5 @@
 """ MacOS TTS Voice. """
+
 import os
 
 from startgpt.speech.base import VoiceBase

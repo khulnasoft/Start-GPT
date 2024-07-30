@@ -50,7 +50,7 @@ Enter this command to use TTS _(Text-to-Speech)_ for Start-GPT
 
 ### 💀 Continuous Mode ⚠️
 
-Run the AI **without** user authorization, 100% startmated.
+Run the AI **without** user authorization, 100% automated.
 Continuous mode is NOT recommended.
 It is potentially dangerous and may cause your AI to run forever or carry out actions you would not usually authorize.
 Use at your own risk.

@@ -90,7 +90,7 @@ def main() -> None:
     else:
         logger.warn(
             "Please provide either a file path (--file) or a directory name (--dir)"
-            " inside the start_gpt_workspace directory as input."
+            " inside the auto_gpt_workspace directory as input."
         )
 
 

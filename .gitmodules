@@ -1,4 +1,4 @@
+
 [submodule "tests/Start-GPT-test-cassettes"]
-    path = tests/Start-GPT-test-cassettes
-    url = https://github.com/khulnasoft/Start-GPT-test-cassettes
-    branch = master
+	path = tests/Start-GPT-test-cassettes
+	url = https://github.com/khulnasoft-lab/Start-GPT-test-cassettes

@@ -25,7 +25,7 @@ pytest_plugins = [
 
 @pytest.fixture()
 def workspace_root(tmp_path: Path) -> Path:
-    return tmp_path / "home/users/monty/start_gpt_workspace"
+    return tmp_path / "home/users/monty/auto_gpt_workspace"
 
 
 @pytest.fixture()
@@ -73,7 +73,7 @@ def api_manager() -> ApiManager:
     return ApiManager()
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def patch_emit(monkeypatch):
     # convert plain_output to a boolean
 

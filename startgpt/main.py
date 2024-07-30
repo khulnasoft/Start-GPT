@@ -1,4 +1,5 @@
 """The application entry point.  Can be invoked by a CLI or any other front end application."""
+
 import logging
 import sys
 
@@ -31,7 +32,7 @@ COMMAND_CATEGORIES = [
 ]
 
 
-def run_start_gpt(
+def run_auto_gpt(
     continuous: bool,
     continuous_limit: int,
     ai_settings: str,
