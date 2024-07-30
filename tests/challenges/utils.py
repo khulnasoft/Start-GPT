@@ -6,9 +6,9 @@ from typing import Any, Generator
 
 import pytest
 
+from benchmarks import run_task
 from startgpt.log_cycle.log_cycle import LogCycleHandler
 from startgpt.workspace import Workspace
-from benchmarks import run_task
 from tests.challenges.schema import Task
 
 

@@ -5,6 +5,7 @@ import sys
 
 from colorama import Fore, Style
 
+from scripts.install_plugin_deps import install_plugin_dependencies
 from startgpt.agent import Agent
 from startgpt.config import Config, check_openai_api_key
 from startgpt.configurator import create_config
@@ -20,7 +21,6 @@ from startgpt.utils import (
     markdown_to_ansi_style,
 )
 from startgpt.workspace import Workspace
-from scripts.install_plugin_deps import install_plugin_dependencies
 
 COMMAND_CATEGORIES = [
     "startgpt.commands.execute_code",
@@ -32,7 +32,7 @@ COMMAND_CATEGORIES = [
 ]
 
 
-def run_auto_gpt(
+def run_start_gpt(
     continuous: bool,
     continuous_limit: int,
     ai_settings: str,

@@ -150,7 +150,7 @@ class Workspace:
     @staticmethod
     def get_workspace_directory(config: Config, workspace_directory: str = None):
         if workspace_directory is None:
-            workspace_directory = Path(__file__).parent / "auto_gpt_workspace"
+            workspace_directory = Path(__file__).parent / "start_gpt_workspace"
         else:
             workspace_directory = Path(workspace_directory)
         # TODO: pass in the ai_settings file and the env file and have them cloned into

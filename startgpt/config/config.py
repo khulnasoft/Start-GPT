@@ -6,8 +6,8 @@ from typing import List
 
 import openai
 import yaml
-from auto_gpt_plugin_template import StartGPTPluginTemplate
 from colorama import Fore
+from start_gpt_plugin_template import StartGPTPluginTemplate
 
 import startgpt
 

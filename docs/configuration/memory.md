@@ -173,11 +173,11 @@ options:
 # python data_ingestion.py --dir DataFolder --init --overlap 100 --max_length 2000
 ```
 
-In the example above, the script initializes the memory, ingests all files within the `Start-Gpt/startgpt/auto_gpt_workspace/DataFolder` directory into memory with an overlap between chunks of 100 and a maximum length of each chunk of 2000.
+In the example above, the script initializes the memory, ingests all files within the `Start-Gpt/startgpt/start_gpt_workspace/DataFolder` directory into memory with an overlap between chunks of 100 and a maximum length of each chunk of 2000.
 
-Note that you can also use the `--file` argument to ingest a single file into memory and that data_ingestion.py will only ingest files within the `/auto_gpt_workspace` directory.
+Note that you can also use the `--file` argument to ingest a single file into memory and that data_ingestion.py will only ingest files within the `/start_gpt_workspace` directory.
 
-The DIR path is relative to the auto_gpt_workspace directory, so `python data_ingestion.py --dir . --init` will ingest everything in `auto_gpt_workspace` directory.
+The DIR path is relative to the start_gpt_workspace directory, so `python data_ingestion.py --dir . --init` will ingest everything in `start_gpt_workspace` directory.
 
 You can adjust the `max_length` and `overlap` parameters to fine-tune the way the
     documents are presented to the AI when it "recall" that memory:

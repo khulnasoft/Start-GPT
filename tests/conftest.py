@@ -25,7 +25,7 @@ pytest_plugins = [
 
 @pytest.fixture()
 def workspace_root(tmp_path: Path) -> Path:
-    return tmp_path / "home/users/monty/auto_gpt_workspace"
+    return tmp_path / "home/users/monty/start_gpt_workspace"
 
 
 @pytest.fixture()

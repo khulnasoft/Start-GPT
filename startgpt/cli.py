@@ -91,10 +91,10 @@ def main(
     Start an Start-GPT assistant.
     """
     # Put imports inside function to avoid importing everything when starting the CLI
-    from startgpt.main import run_auto_gpt
+    from startgpt.main import run_start_gpt
 
     if ctx.invoked_subcommand is None:
-        run_auto_gpt(
+        run_start_gpt(
             continuous,
             continuous_limit,
             ai_settings,

@@ -5,7 +5,7 @@ from startgpt.config import Config
 from startgpt.models.command import Command, CommandParameter
 
 # Unique identifier for start-gpt commands
-AUTO_GPT_COMMAND_IDENTIFIER = "auto_gpt_command"
+START_GPT_COMMAND_IDENTIFIER = "start_gpt_command"
 
 
 class CommandParameterSpec(TypedDict):
@@ -48,7 +48,7 @@ def command(
 
         wrapper.command = cmd
 
-        setattr(wrapper, AUTO_GPT_COMMAND_IDENTIFIER, True)
+        setattr(wrapper, START_GPT_COMMAND_IDENTIFIER, True)
 
         return wrapper
 

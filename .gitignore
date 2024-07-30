@@ -1,7 +1,7 @@
 ## Original ignores
 startgpt/keys.py
 startgpt/*.json
-**/auto_gpt_workspace/*
+**/start_gpt_workspace/*
 *.mpeg
 .env
 azure.yaml
