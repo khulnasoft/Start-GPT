@@ -4,7 +4,6 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - 'tests/Start-GPT-test-cassettes'
       - 'tests/challenges/current_score.json'
   pull_request:
     branches: [ master, release-*, stable ]
