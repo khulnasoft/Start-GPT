@@ -173,7 +173,7 @@ def chat_with_ai(
     tokens_remaining = token_limit - current_tokens_used
     # assert tokens_remaining >= 0, "Tokens remaining is negative.
     # This should never happen, please submit a bug report at
-    #  https://www.github.com/khulnasoft-bot/Start-GPT"
+    #  https://www.github.com/khulnasoft/Start-GPT"
 
     # Debug print the current context
     logger.debug(f"Token limit: {token_limit}")
