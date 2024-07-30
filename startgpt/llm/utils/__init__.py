@@ -29,7 +29,7 @@ def call_ai_function(
     """Call an AI function
 
     This is a magic function that can do anything with no-code. See
-    https://github.com/khulnasoft/AI-Functions for more info.
+    https://github.com/khulnasoft-bot/AI-Functions for more info.
 
     Args:
         function (str): The function to call
@@ -139,9 +139,9 @@ def create_chat_completion(
 
     chat_completion_kwargs["api_key"] = config.openai_api_key
     if config.use_azure:
-        chat_completion_kwargs[
-            "deployment_id"
-        ] = config.get_azure_deployment_id_for_model(model)
+        chat_completion_kwargs["deployment_id"] = (
+            config.get_azure_deployment_id_for_model(model)
+        )
     if functions:
         chat_completion_kwargs["functions"] = [
             function.__dict__ for function in functions

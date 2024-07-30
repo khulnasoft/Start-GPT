@@ -1,4 +1,5 @@
 """Main script for the startgpt package."""
+
 import click
 
 
@@ -13,7 +14,7 @@ import click
 @click.option(
     "--ai-settings",
     "-C",
-    help="Specifies which ai_settings.yaml file to use, will also startmatically skip the re-prompt.",
+    help="Specifies which ai_settings.yaml file to use, will also automatically skip the re-prompt.",
 )
 @click.option(
     "--prompt-settings",

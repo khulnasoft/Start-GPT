@@ -1,6 +1,6 @@
 # Website and Documentation Site 📰📖
-Check out *https://agpt.co*, the official news & updates site for Start-GPT!
-The documentation also has a place here, at *https://docs.agpt.co*
+Check out *https://sgpt.khulnasoft.com*, the official news & updates site for Start-GPT!
+The documentation also has a place here, at *https://docs.sgpt.khulnasoft.com*
 
 # For contributors 👷🏼
 Since releasing v0.3.0, whave been working on re-architecting the Start-GPT core to make it more extensible and make room for structural performance-oriented R&D.

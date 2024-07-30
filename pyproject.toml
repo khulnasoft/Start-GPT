@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "agpt"
 version = "0.4.2"
 authors = [
-  { name="khulnasoft", email="support@agpt.co" },
+  { name="khulnasoft-bot", email="support@khulnasoft.com" },
 ]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,7 +15,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-description = "An open-source attempt to make GPT-4 startnomous"
+description = "An open-source attempt to make GPT-4 autonomous"
 
 [project.urls]
 "Homepage" = "https://github.com/khulnasoft/Start-GPT"

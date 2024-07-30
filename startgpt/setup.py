@@ -1,4 +1,5 @@
 """Set up the AI and its goals"""
+
 import re
 
 from colorama import Fore, Style
@@ -11,8 +12,8 @@ from startgpt.llm.base import ChatSequence, Message
 from startgpt.llm.chat import create_chat_completion
 from startgpt.logs import logger
 from startgpt.prompts.default_prompts import (
-    DEFAULT_SYSTEM_PROMPT_AICONFIG_STARTMATIC,
-    DEFAULT_TASK_PROMPT_AICONFIG_STARTMATIC,
+    DEFAULT_SYSTEM_PROMPT_AICONFIG_AUTOMATIC,
+    DEFAULT_TASK_PROMPT_AICONFIG_AUTOMATIC,
     DEFAULT_USER_DESIRE_PROMPT,
 )
 
@@ -60,10 +61,10 @@ def prompt_user(config: Config) -> AIConfig:
 
     else:
         try:
-            return generate_aiconfig_startmatic(user_desire, config)
+            return generate_aiconfig_automatic(user_desire, config)
         except Exception as e:
             logger.typewriter_log(
-                "Unable to startmatically generate AI Config based on user desire.",
+                "Unable to automatically generate AI Config based on user desire.",
                 Fore.RED,
                 "Falling back to manual mode.",
                 speak_text=True,
@@ -109,12 +110,12 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     logger.typewriter_log(
         "Describe your AI's role: ",
         Fore.GREEN,
-        "For example, 'an AI designed to startnomously develop and run businesses with"
+        "For example, 'an AI designed to autonomously develop and run businesses with"
         " the sole goal of increasing your net worth.'",
     )
     ai_role = utils.clean_input(config, f"{ai_name} is: ")
     if ai_role == "":
-        ai_role = "an AI designed to startnomously develop and run businesses with the"
+        ai_role = "an AI designed to autonomously develop and run businesses with the"
         " sole goal of increasing your net worth."
 
     # Enter up to 5 goals for the AI
@@ -122,7 +123,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
         "Enter up to 5 goals for your AI: ",
         Fore.GREEN,
         "For example: \nIncrease net worth, Grow Twitter Account, Develop and manage"
-        " multiple businesses startnomously'",
+        " multiple businesses autonomously'",
     )
     logger.info("Enter nothing to load defaults, enter nothing when finished.")
     ai_goals = []
@@ -137,7 +138,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
         ai_goals = [
             "Increase net worth",
             "Grow Twitter Account",
-            "Develop and manage multiple businesses startnomously",
+            "Develop and manage multiple businesses autonomously",
         ]
 
     # Get API Budget from User
@@ -164,16 +165,16 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     return AIConfig(ai_name, ai_role, ai_goals, api_budget)
 
 
-def generate_aiconfig_startmatic(user_prompt: str, config: Config) -> AIConfig:
+def generate_aiconfig_automatic(user_prompt: str, config: Config) -> AIConfig:
     """Generates an AIConfig object from the given string.
 
     Returns:
     AIConfig: The AIConfig object tailored to the user's input
     """
 
-    system_prompt = DEFAULT_SYSTEM_PROMPT_AICONFIG_STARTMATIC
-    prompt_ai_config_startmatic = Template(
-        DEFAULT_TASK_PROMPT_AICONFIG_STARTMATIC
+    system_prompt = DEFAULT_SYSTEM_PROMPT_AICONFIG_AUTOMATIC
+    prompt_ai_config_automatic = Template(
+        DEFAULT_TASK_PROMPT_AICONFIG_AUTOMATIC
     ).render(user_prompt=user_prompt)
     # Call LLM with the string as user input
     output = create_chat_completion(
@@ -181,7 +182,7 @@ def generate_aiconfig_startmatic(user_prompt: str, config: Config) -> AIConfig:
             config.fast_llm_model,
             [
                 Message("system", system_prompt),
-                Message("user", prompt_ai_config_startmatic),
+                Message("user", prompt_ai_config_automatic),
             ],
         ),
         config,

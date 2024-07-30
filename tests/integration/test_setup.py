@@ -3,12 +3,12 @@ from unittest.mock import patch
 import pytest
 
 from startgpt.config.ai_config import AIConfig
-from startgpt.setup import generate_aiconfig_startmatic, prompt_user
+from startgpt.setup import generate_aiconfig_automatic, prompt_user
 
 
 @pytest.mark.vcr
 @pytest.mark.requires_openai_api_key
-def test_generate_aiconfig_startmatic_default(patched_api_requestor, config):
+def test_generate_aiconfig_automatic_default(patched_api_requestor, config):
     user_inputs = [""]
     with patch("startgpt.utils.session.prompt", side_effect=user_inputs):
         ai_config = prompt_user(config)
@@ -21,9 +21,9 @@ def test_generate_aiconfig_startmatic_default(patched_api_requestor, config):
 
 @pytest.mark.vcr
 @pytest.mark.requires_openai_api_key
-def test_generate_aiconfig_startmatic_typical(patched_api_requestor, config):
+def test_generate_aiconfig_automatic_typical(patched_api_requestor, config):
     user_prompt = "Help me create a rock opera about cybernetic giraffes"
-    ai_config = generate_aiconfig_startmatic(user_prompt, config)
+    ai_config = generate_aiconfig_automatic(user_prompt, config)
 
     assert isinstance(ai_config, AIConfig)
     assert ai_config.ai_name is not None
@@ -33,7 +33,7 @@ def test_generate_aiconfig_startmatic_typical(patched_api_requestor, config):
 
 @pytest.mark.vcr
 @pytest.mark.requires_openai_api_key
-def test_generate_aiconfig_startmatic_fallback(patched_api_requestor, config):
+def test_generate_aiconfig_automatic_fallback(patched_api_requestor, config):
     user_inputs = [
         "T&GF£OIBECC()!*",
         "Chef-GPT",

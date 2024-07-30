@@ -11,8 +11,8 @@ from startgpt.logs import remove_color_codes
             "COMMAND = browse_website  ARGUMENTS = {'url': 'https://www.google.com', 'question': 'What is the capital of France?'}",
         ),
         (
-            "{'Schaue dir meine Projekte auf github () an, als auch meine Webseiten': 'https://github.com/khulnasoft/Start-GPT, https://discord.gg/startgpt und https://twitter.com/SigGravitas'}",
-            "{'Schaue dir meine Projekte auf github () an, als auch meine Webseiten': 'https://github.com/khulnasoft/Start-GPT, https://discord.gg/startgpt und https://twitter.com/SigGravitas'}",
+            "{'Schaue dir meine Projekte auf github () an, als auch meine Webseiten': 'https://github.com/khulnasoft/Start-GPT, https://discord.gg/startgpt und https://twitter.com/khulnasoft'}",
+            "{'Schaue dir meine Projekte auf github () an, als auch meine Webseiten': 'https://github.com/khulnasoft/Start-GPT, https://discord.gg/startgpt und https://twitter.com/khulnasoft'}",
         ),
         ("", ""),
         ("hello", "hello"),

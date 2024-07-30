@@ -1,7 +1,7 @@
 #########################Setup.py#################################
 
-DEFAULT_SYSTEM_PROMPT_AICONFIG_STARTMATIC = """
-Your task is to devise up to 5 highly effective goals and an appropriate role-based name (_GPT) for an startnomous agent, ensuring that the goals are optimally aligned with the successful completion of its assigned task.
+DEFAULT_SYSTEM_PROMPT_AICONFIG_AUTOMATIC = """
+Your task is to devise up to 5 highly effective goals and an appropriate role-based name (_GPT) for an autonomous agent, ensuring that the goals are optimally aligned with the successful completion of its assigned task.
 
 The user will provide the task, you will provide only the output in the exact format specified below with no explanation or conversation.
 
@@ -21,9 +21,9 @@ Goals:
 - Proactively take the lead in guiding you and offering suggestions when faced with unclear information or uncertainty to ensure your marketing strategy remains on track.
 """
 
-DEFAULT_TASK_PROMPT_AICONFIG_STARTMATIC = (
+DEFAULT_TASK_PROMPT_AICONFIG_AUTOMATIC = (
     "Task: '{{user_prompt}}'\n"
     "Respond only with the output in the exact format specified in the system prompt, with no explanation or conversation.\n"
 )
 
-DEFAULT_USER_DESIRE_PROMPT = "Write a wikipedia style article about the project: https://github.com/khulnasoft/Start-GPT"  # Default prompt
+DEFAULT_USER_DESIRE_PROMPT = "Write a wikipedia style article about the project: https://github.com/khulnasoft/start-gpt"  # Default prompt

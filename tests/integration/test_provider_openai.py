@@ -8,7 +8,7 @@ from startgpt.llm.providers import openai
 api_manager = ApiManager()
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def reset_api_manager():
     api_manager.reset()
     yield

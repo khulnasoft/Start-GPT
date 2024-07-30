@@ -1,9 +1,11 @@
 """The application entry point.  Can be invoked by a CLI or any other front end application."""
+
 import logging
 import sys
 
 from colorama import Fore, Style
 
+from scripts.install_plugin_deps import install_plugin_dependencies
 from startgpt.agent import Agent
 from startgpt.config import Config, check_openai_api_key
 from startgpt.configurator import create_config
@@ -19,7 +21,6 @@ from startgpt.utils import (
     markdown_to_ansi_style,
 )
 from startgpt.workspace import Workspace
-from scripts.install_plugin_deps import install_plugin_dependencies
 
 COMMAND_CATEGORIES = [
     "startgpt.commands.execute_code",

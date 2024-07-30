@@ -1,4 +1,5 @@
 """Google search command for Startgpt."""
+
 from __future__ import annotations
 
 import json

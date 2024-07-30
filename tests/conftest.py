@@ -73,7 +73,7 @@ def api_manager() -> ApiManager:
     return ApiManager()
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def patch_emit(monkeypatch):
     # convert plain_output to a boolean
 

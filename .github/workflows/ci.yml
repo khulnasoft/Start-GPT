@@ -69,7 +69,7 @@ jobs:
 
       - name: Check for unused imports and pass statements
         run: |
-          cmd="startflake --remove-all-unused-imports --recursive --ignore-init-module-imports --ignore-pass-after-docstring startgpt tests"
+          cmd="autoflake --remove-all-unused-imports --recursive --ignore-init-module-imports --ignore-pass-after-docstring startgpt tests"
           $cmd --check || (echo "You have unused imports or pass statements, please run '${cmd} --in-place'" && exit 1)
 
   test:
@@ -102,7 +102,7 @@ jobs:
       - name: Configure git user Start-GPT-Bot
         run: |
           git config --global user.name "Start-GPT-Bot"
-          git config --global user.email "github-bot@agpt.co"
+          git config --global user.email "github-bot@sgpt.khulnasoft.com"
 
       - name: Checkout cassettes
         if: ${{ startsWith(github.event_name, 'pull_request') }}
@@ -148,7 +148,7 @@ jobs:
 
       - name: Run pytest with coverage
         run: |
-          pytest -n start --cov=startgpt --cov-branch --cov-report term-missing --cov-report xml \
+          pytest -n auto --cov=startgpt --cov-branch --cov-report term-missing --cov-report xml \
             tests/unit tests/integration tests/challenges
           python tests/challenges/utils/build_current_score.py
         env:
@@ -207,7 +207,7 @@ jobs:
           # Commit & push changes to cassettes if any
           if ! git diff --quiet; then
             git add .
-            git commit -m "Start-update cassettes"
+            git commit -m "Auto-update cassettes"
             git push origin HEAD:$cassette_branch
             if [ ! $is_pull_request ]; then
               cd ../..

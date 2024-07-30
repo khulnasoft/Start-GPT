@@ -135,11 +135,15 @@ def chat_with_ai(
         budget_message = f"Your remaining API budget is ${remaining_budget:.3f}" + (
             " BUDGET EXCEEDED! SHUT DOWN!\n\n"
             if remaining_budget == 0
-            else " Budget very nearly exceeded! Shut down gracefully!\n\n"
-            if remaining_budget < 0.005
-            else " Budget nearly exceeded. Finish up.\n\n"
-            if remaining_budget < 0.01
-            else "\n\n"
+            else (
+                " Budget very nearly exceeded! Shut down gracefully!\n\n"
+                if remaining_budget < 0.005
+                else (
+                    " Budget nearly exceeded. Finish up.\n\n"
+                    if remaining_budget < 0.01
+                    else "\n\n"
+                )
+            )
         )
         logger.debug(budget_message)
         message_sequence.add("system", budget_message)
@@ -169,7 +173,7 @@ def chat_with_ai(
     tokens_remaining = token_limit - current_tokens_used
     # assert tokens_remaining >= 0, "Tokens remaining is negative.
     # This should never happen, please submit a bug report at
-    #  https://www.github.com/khulnasoft/Start-GPT"
+    #  https://www.github.com/khulnasoft-bot/Start-GPT"
 
     # Debug print the current context
     logger.debug(f"Token limit: {token_limit}")

@@ -1,5 +1,5 @@
 site_name: Start-GPT
-site_url: https://docs.agpt.co/
+site_url: https://docs.sgpt.khulnasoft.com/
 repo_url: https://github.com/khulnasoft/Start-GPT
 nav:
   - Home: index.md

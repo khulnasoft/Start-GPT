@@ -7,6 +7,7 @@ The workspace is a directory containing configuration and working files for an S
 agent.
 
 """
+
 from __future__ import annotations
 
 from pathlib import Path

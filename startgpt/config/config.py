@@ -1,12 +1,13 @@
 """Configuration class to store the state of bools for different scripts access."""
+
 import os
 import re
 from typing import List
 
 import openai
 import yaml
-from start_gpt_plugin_template import StartGPTPluginTemplate
 from colorama import Fore
+from start_gpt_plugin_template import StartGPTPluginTemplate
 
 import startgpt
 

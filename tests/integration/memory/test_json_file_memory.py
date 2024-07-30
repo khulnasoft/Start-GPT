@@ -8,7 +8,7 @@ from startgpt.memory.vector import JSONFileMemory, MemoryItem
 from startgpt.workspace import Workspace
 
 
-@pytest.fixture(startuse=True)
+@pytest.fixture(autouse=True)
 def cleanup_sut_singleton():
     if JSONFileMemory in JSONFileMemory._instances:
         del JSONFileMemory._instances[JSONFileMemory]
