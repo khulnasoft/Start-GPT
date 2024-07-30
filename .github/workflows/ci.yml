@@ -159,7 +159,7 @@ jobs:
           PLAIN_OUTPUT: True
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
 
       - id: setup_git_auth
         name: Set up git token authentication
