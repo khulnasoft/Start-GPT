@@ -27,8 +27,6 @@ click
 charset-normalizer>=3.1.0
 spacy>=3.0.0,<4.0.0
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
-prompt_toolkit>=3.0.38
-pydantic
 
 ##Dev
 coverage
@@ -39,13 +37,10 @@ black
 isort
 gitpython==3.1.31
 start-gpt-plugin-template @ git+https://github.com/khulnasoft/Start-GPT-Plugin-Template@0.1.0
+StartGPTPluginTemplate @ git+https://github.com/khulnasoft/Start-GPT-Plugin-Template
 mkdocs
 pymdown-extensions
 mypy
-types-Markdown
-types-beautifulsoup4
-types-colorama
-types-Pillow
 
 # OpenAI and Generic plugins import
 openapi-python-client==0.13.4
@@ -60,6 +55,6 @@ pytest-benchmark
 pytest-cov
 pytest-integration
 pytest-mock
-vcrpy @ git+https://github.com/Significant-Gravitas/vcrpy.git@master
+vcrpy
 pytest-recording
 pytest-xdist

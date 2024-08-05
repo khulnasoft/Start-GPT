@@ -5,7 +5,7 @@ from startgpt.commands.file_operations import ingest_file, list_files
 from startgpt.config import Config
 from startgpt.memory.vector import VectorMemory, get_memory
 
-config = Config()
+cfg = Config()
 
 
 def configure_logging():
@@ -70,9 +70,7 @@ def main() -> None:
     args = parser.parse_args()
 
     # Initialize memory
-    memory = get_memory(config)
-    if args.init:
-        memory.clear()
+    memory = get_memory(cfg, init=args.init)
     logger.debug("Using memory of type: " + memory.__class__.__name__)
 
     if args.file:

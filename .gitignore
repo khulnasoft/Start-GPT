@@ -1,7 +1,12 @@
 ## Original ignores
 startgpt/keys.py
-startgpt/*.json
-**/start_gpt_workspace/*
+startgpt/*json
+startgpt/node_modules/
+startgpt/__pycache__/keys.cpython-310.pyc
+startgpt/start_gpt_workspace
+package-lock.json
+*.pyc
+start_gpt_workspace/*
 *.mpeg
 .env
 azure.yaml
@@ -31,8 +36,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
-/plugins/
-plugins_config.yaml
+plugins/
 downloads/
 eggs/
 .eggs/

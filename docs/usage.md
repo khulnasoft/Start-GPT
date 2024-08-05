@@ -104,5 +104,5 @@ If you want to selectively disable some command groups, you can use the `DISABLE
 For example, to disable coding related features, set it to the value below:
 
 ```ini
-DISABLED_COMMAND_CATEGORIES=startgpt.commands.execute_code
+DISABLED_COMMAND_CATEGORIES=startgpt.commands.analyze_code,startgpt.commands.execute_code,startgpt.commands.git_operations,startgpt.commands.improve_code,startgpt.commands.write_tests
 ```

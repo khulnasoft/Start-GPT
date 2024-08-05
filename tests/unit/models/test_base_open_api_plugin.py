@@ -1,10 +1,18 @@
+from typing import Any, Dict, List, Optional, Tuple
+
 import pytest
 
-from startgpt.models.base_open_ai_plugin import BaseOpenAIPlugin
+from startgpt.models.base_open_ai_plugin import (
+    BaseOpenAIPlugin,
+    Message,
+    PromptGenerator,
+)
 
 
 class DummyPlugin(BaseOpenAIPlugin):
     """A dummy plugin for testing purposes."""
+
+    pass
 
 
 @pytest.fixture

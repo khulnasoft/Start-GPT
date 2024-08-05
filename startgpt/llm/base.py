@@ -2,16 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from math import ceil, floor
-from typing import TYPE_CHECKING, List, Literal, Optional, TypedDict
-
-if TYPE_CHECKING:
-    from startgpt.llm.providers.openai import OpenAIFunctionCall
+from typing import List, Literal, TypedDict
 
 MessageRole = Literal["system", "user", "assistant"]
 MessageType = Literal["ai_response", "action_result"]
-
-TText = list[int]
-"""Token array representing tokenized text"""
 
 
 class MessageDict(TypedDict):
@@ -37,28 +31,27 @@ class ModelInfo:
 
     Would be lovely to eventually get this directly from APIs, but needs to be scraped from
     websites for now.
+
     """
 
     name: str
-    max_tokens: int
     prompt_token_cost: float
-
-
-@dataclass
-class CompletionModelInfo(ModelInfo):
-    """Struct for generic completion model information."""
-
     completion_token_cost: float
+    max_tokens: int
 
 
 @dataclass
-class ChatModelInfo(CompletionModelInfo):
+class ChatModelInfo(ModelInfo):
     """Struct for chat model information."""
 
+    pass
+
 
 @dataclass
-class TextModelInfo(CompletionModelInfo):
+class TextModelInfo(ModelInfo):
     """Struct for text completion model information."""
+
+    pass
 
 
 @dataclass
@@ -159,5 +152,4 @@ class EmbeddingModelResponse(LLMResponse):
 class ChatModelResponse(LLMResponse):
     """Standard response struct for a response from an LLM model."""
 
-    content: Optional[str] = None
-    function_call: Optional[OpenAIFunctionCall] = None
+    content: str = None

@@ -6,13 +6,11 @@ FROM python:3.10-slim AS startgpt-base
 
 # Install browsers
 RUN apt-get update && apt-get install -y \
-    chromium-driver firefox-esr ca-certificates \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    chromium-driver firefox-esr \
+    ca-certificates
 
 # Install utilities
-RUN apt-get update && apt-get install -y \
-    curl jq wget git \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y curl jq wget git
 
 # Set environment variables
 ENV PIP_NO_CACHE_DIR=yes \
@@ -40,7 +38,6 @@ WORKDIR /app
 ONBUILD COPY startgpt/ ./startgpt
 ONBUILD COPY scripts/ ./scripts
 ONBUILD COPY plugins/ ./plugins
-ONBUILD COPY prompt_settings.yaml ./prompt_settings.yaml
 ONBUILD RUN mkdir ./data
 
 FROM startgpt-${BUILD_TYPE} AS start-gpt

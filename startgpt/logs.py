@@ -10,7 +10,6 @@ from typing import Any
 
 from colorama import Fore, Style
 
-from startgpt.config import Config
 from startgpt.log_cycle.json_handler import JsonFileHandler, JsonFormatter
 from startgpt.singleton import Singleton
 from startgpt.speech import say_text
@@ -154,7 +153,7 @@ class Logger(metaclass=Singleton):
         if not additionalText:
             additionalText = (
                 "Please ensure you've setup and configured everything"
-                " correctly. Read https://github.com/khulnasoft/Start-GPT#readme to "
+                " correctly. Read https://github.com/Torantulino/Start-GPT#readme to "
                 "double check. You can also create a github issue or join the discord"
                 " and ask there!"
             )
@@ -256,7 +255,7 @@ logger = Logger()
 def print_assistant_thoughts(
     ai_name: object,
     assistant_reply_json_valid: object,
-    config: Config,
+    speak_mode: bool = False,
 ) -> None:
     assistant_thoughts_reasoning = None
     assistant_thoughts_plan = None
@@ -290,7 +289,7 @@ def print_assistant_thoughts(
     logger.typewriter_log("CRITICISM:", Fore.YELLOW, f"{assistant_thoughts_criticism}")
     # Speak the assistant's thoughts
     if assistant_thoughts_speak:
-        if config.speak_mode:
-            say_text(assistant_thoughts_speak, config)
+        if speak_mode:
+            say_text(assistant_thoughts_speak)
         else:
             logger.typewriter_log("SPEAK:", Fore.YELLOW, f"{assistant_thoughts_speak}")

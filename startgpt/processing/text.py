@@ -13,6 +13,8 @@ from startgpt.llm.utils import count_string_tokens, create_chat_completion
 from startgpt.logs import logger
 from startgpt.utils import batch
 
+CFG = Config()
+
 
 def _max_chunk_length(model: str, max: Optional[int] = None) -> int:
     model_max_input_tokens = OPEN_AI_MODELS[model].max_tokens - 1
@@ -59,18 +61,13 @@ def chunk_content(
 
 
 def summarize_text(
-    text: str,
-    config: Config,
-    instruction: Optional[str] = None,
-    question: Optional[str] = None,
+    text: str, instruction: Optional[str] = None, question: Optional[str] = None
 ) -> tuple[str, None | list[tuple[str, str]]]:
     """Summarize text using the OpenAI API
 
     Args:
         text (str): The text to summarize
-        config (Config): The config object
         instruction (str): Additional instruction for summarization, e.g. "focus on information related to polar bears", "omit personal information contained in the text"
-        question (str): Question to answer in the summary
 
     Returns:
         str: The summary of the text
@@ -83,7 +80,7 @@ def summarize_text(
     if instruction and question:
         raise ValueError("Parameters 'question' and 'instructions' cannot both be set")
 
-    model = config.fast_llm_model
+    model = CFG.fast_llm_model
 
     if question:
         instruction = (
@@ -115,18 +112,14 @@ def summarize_text(
 
         logger.debug(f"Summarizing with {model}:\n{summarization_prompt.dump()}\n")
         summary = create_chat_completion(
-            prompt=summarization_prompt, config=config, temperature=0, max_tokens=500
-        ).content
+            summarization_prompt, temperature=0, max_tokens=500
+        )
 
         logger.debug(f"\n{'-'*16} SUMMARY {'-'*17}\n{summary}\n{'-'*42}\n")
         return summary.strip(), None
 
     summaries: list[str] = []
-    chunks = list(
-        split_text(
-            text, for_model=model, config=config, max_chunk_length=max_chunk_length
-        )
-    )
+    chunks = list(split_text(text, for_model=model, max_chunk_length=max_chunk_length))
 
     for i, (chunk, chunk_length) in enumerate(chunks):
         logger.info(
@@ -146,8 +139,7 @@ def summarize_text(
 
 def split_text(
     text: str,
-    for_model: str,
-    config: Config,
+    for_model: str = CFG.fast_llm_model,
     with_overlap=True,
     max_chunk_length: Optional[int] = None,
 ):
@@ -156,9 +148,7 @@ def split_text(
     Args:
         text (str): The text to split
         for_model (str): The model to chunk for; determines tokenizer and constraints
-        config (Config): The config object
-        with_overlap (bool, optional): Whether to allow overlap between chunks
-        max_chunk_length (int, optional): The maximum length of a chunk
+        max_length (int, optional): The maximum length of each chunk
 
     Yields:
         str: The next chunk of text
@@ -166,7 +156,6 @@ def split_text(
     Raises:
         ValueError: when a sentence is longer than the maximum length
     """
-
     max_length = _max_chunk_length(for_model, max_chunk_length)
 
     # flatten paragraphs to improve performance
@@ -180,7 +169,7 @@ def split_text(
     n_chunks = ceil(text_length / max_length)
     target_chunk_length = ceil(text_length / n_chunks)
 
-    nlp: spacy.language.Language = spacy.load(config.browse_spacy_language_model)
+    nlp: spacy.language.Language = spacy.load(CFG.browse_spacy_language_model)
     nlp.add_pipe("sentencizer")
     doc = nlp(text)
     sentences = [sentence.text.strip() for sentence in doc.sents]

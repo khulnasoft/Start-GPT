@@ -1,3 +1,4 @@
+import numpy
 import pytest
 
 from startgpt.memory.vector.memory_item import MemoryItem

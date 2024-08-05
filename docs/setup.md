@@ -34,21 +34,26 @@ Get your OpenAI API key from: [https://platform.openai.com/account/api-keys](htt
 ### Set up with Docker
 
 1. Make sure you have Docker installed, see [requirements](#requirements)
-2. Create a project directory for Start-GPT
+2. Pull the latest image from [Docker Hub]
 
         :::shell
-        mkdir Start-GPT
-        cd Start-GPT
+        docker pull khulnasoft/start-gpt
 
-3. In the project directory, create a file called `docker-compose.yml` with the following contents:
+3. Create a folder for Start-GPT
+4. In the folder, create a file called `docker-compose.yml` with the following contents:
 
         :::yaml
         version: "3.9"
         services:
           start-gpt:
-            image: significantgravitas/start-gpt
+            image: khulnasoft/start-gpt
+            depends_on:
+              - redis
             env_file:
               - .env
+            environment:
+              MEMORY_BACKEND: ${MEMORY_BACKEND:-redis}
+              REDIS_HOST: ${REDIS_HOST:-redis}
             profiles: ["exclude-from-up"]
             volumes:
               - ./start_gpt_workspace:/app/startgpt/start_gpt_workspace
@@ -63,21 +68,18 @@ Get your OpenAI API key from: [https://platform.openai.com/account/api-keys](htt
               #- type: bind
               #  source: ./ai_settings.yaml
               #  target: /app/ai_settings.yaml
+          redis:
+            image: "redis/redis-stack-server:latest"
 
-4. Create the necessary [configuration](#configuration) files. If needed, you can find
+5. Create the necessary [configuration](#configuration) files. If needed, you can find
     templates in the [repository].
-5. Pull the latest image from [Docker Hub]
-
-        :::shell
-        docker pull significantgravitas/start-gpt
-
 6. Continue to [Run with Docker](#run-with-docker)
 
 !!! note "Docker only supports headless browsing"
     Start-GPT uses a browser in headless mode by default: `HEADLESS_BROWSER=True`.
     Please do not change this setting in combination with Docker, or Start-GPT will crash.
 
-[Docker Hub]: https://hub.docker.com/r/significantgravitas/start-gpt
+[Docker Hub]: https://hub.docker.com/r/khulnasoft/start-gpt
 [repository]: https://github.com/khulnasoft/Start-GPT
 
 
@@ -172,7 +174,7 @@ If you need to upgrade Docker Compose to a newer version, you can follow the ins
 
 Once you have a recent version of docker-compose, run the commands below in your Start-GPT folder.
 
-1. Build the image. If you have pulled the image from Docker Hub, skip this step (NOTE: You *will* need to do this if you are modifying requirements.txt to add/remove dependencies like Python libs/frameworks) 
+1. Build the image. If you have pulled the image from Docker Hub, skip this step (NOTE: You *will* need to do this if you are modifying requirements.txt to add/remove depedencies like Python libs/frameworks) 
 
         :::shell
         docker-compose build start-gpt

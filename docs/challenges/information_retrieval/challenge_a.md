@@ -1,19 +1,16 @@
 # Information Retrieval Challenge A
 
-**Status**: Current level to beat: level 2
+**Status**: Current level to beat: level 1
 
 **Command to try**:
 
 ```
-pytest -s tests/challenges/information_retrieval/test_information_retrieval_challenge_a.py --level=2
+pytest -s tests/integration/challenges/information_retrieval/test_information_retrieval_challenge_a.py
 ```
 
 ## Description
 
-The agent's goal is to find the revenue of Tesla:
-- level 1 asks the revenue of Tesla in 2022 and explicitly asks to search for 'tesla revenue 2022'
-- level 2 is identical but doesn't ask to search for 'tesla revenue 2022'
-- level 3 asks for tesla's revenue by year since its creation.
+The agent's goal is to find the revenue of Tesla in 2022.
 
 It should write the result in a file called output.txt.
 

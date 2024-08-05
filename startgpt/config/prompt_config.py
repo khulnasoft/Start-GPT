@@ -6,7 +6,10 @@ import yaml
 from colorama import Fore
 
 from startgpt import utils
+from startgpt.config.config import Config
 from startgpt.logs import logger
+
+CFG = Config()
 
 
 class PromptConfig:
@@ -19,7 +22,10 @@ class PromptConfig:
         performance_evaluations (list): Performance evaluation list for the prompt generator.
     """
 
-    def __init__(self, prompt_settings_file: str) -> None:
+    def __init__(
+        self,
+        config_file: str = CFG.prompt_settings_file,
+    ) -> None:
         """
         Initialize a class instance with parameters (constraints, resources, performance_evaluations) loaded from
           yaml file if yaml file exists,
@@ -33,13 +39,13 @@ class PromptConfig:
             None
         """
         # Validate file
-        (validated, message) = utils.validate_yaml_file(prompt_settings_file)
+        (validated, message) = utils.validate_yaml_file(config_file)
         if not validated:
             logger.typewriter_log("FAILED FILE VALIDATION", Fore.RED, message)
             logger.double_check()
             exit(1)
 
-        with open(prompt_settings_file, encoding="utf-8") as file:
+        with open(config_file, encoding="utf-8") as file:
             config_params = yaml.load(file, Loader=yaml.FullLoader)
 
         self.constraints = config_params.get("constraints", [])

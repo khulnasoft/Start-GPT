@@ -4,9 +4,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agpt"
-version = "0.4.2"
+version = "0.3.0"
 authors = [
-  { name="khulnasoft-bot", email="support@khulnasoft.com" },
+  { name="Torantulino", email="support@agpt.co" },
 ]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -55,9 +55,3 @@ skip = '''
     dist/*
 
 '''
-
-[tool.pytest.ini_options]
-markers = [
-    "requires_openai_api_key",
-    "requires_huggingface_api_key"
-]

@@ -7,14 +7,13 @@ from __future__ import annotations
 import os
 import platform
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 import distro
 import yaml
 
-if TYPE_CHECKING:
-    from startgpt.models.command_registry import CommandRegistry
-    from startgpt.prompts.generator import PromptGenerator
+from startgpt.commands.command import CommandRegistry
+from startgpt.prompts.generator import PromptGenerator
 
 # Soon this will go in a folder where it remembers more stuff about the run(s)
 SAVE_FILE = str(Path(os.getcwd()) / "ai_settings.yaml")
@@ -59,14 +58,14 @@ class AIConfig:
         self.command_registry: CommandRegistry | None = None
 
     @staticmethod
-    def load(ai_settings_file: str = SAVE_FILE) -> "AIConfig":
+    def load(config_file: str = SAVE_FILE) -> "AIConfig":
         """
         Returns class object with parameters (ai_name, ai_role, ai_goals, api_budget) loaded from
           yaml file if yaml file exists,
         else returns class with no parameters.
 
         Parameters:
-           ai_settings_file (int): The path to the config yaml file.
+           config_file (int): The path to the config yaml file.
              DEFAULT: "../ai_settings.yaml"
 
         Returns:
@@ -74,7 +73,7 @@ class AIConfig:
         """
 
         try:
-            with open(ai_settings_file, encoding="utf-8") as file:
+            with open(config_file, encoding="utf-8") as file:
                 config_params = yaml.load(file, Loader=yaml.FullLoader) or {}
         except FileNotFoundError:
             config_params = {}
@@ -93,12 +92,12 @@ class AIConfig:
         # type: Type[AIConfig]
         return AIConfig(ai_name, ai_role, ai_goals, api_budget)
 
-    def save(self, ai_settings_file: str = SAVE_FILE) -> None:
+    def save(self, config_file: str = SAVE_FILE) -> None:
         """
         Saves the class parameters to the specified file yaml file path as a yaml file.
 
         Parameters:
-            ai_settings_file(str): The path to the config yaml file.
+            config_file(str): The path to the config yaml file.
               DEFAULT: "../ai_settings.yaml"
 
         Returns:
@@ -111,11 +110,11 @@ class AIConfig:
             "ai_goals": self.ai_goals,
             "api_budget": self.api_budget,
         }
-        with open(ai_settings_file, "w", encoding="utf-8") as file:
+        with open(config_file, "w", encoding="utf-8") as file:
             yaml.dump(config, file, allow_unicode=True)
 
     def construct_full_prompt(
-        self, config, prompt_generator: Optional[PromptGenerator] = None
+        self, prompt_generator: Optional[PromptGenerator] = None
     ) -> str:
         """
         Returns a prompt to the user with the class information in an organized fashion.
@@ -135,20 +134,22 @@ class AIConfig:
             ""
         )
 
+        from startgpt.config import Config
         from startgpt.prompts.prompt import build_default_prompt_generator
 
+        cfg = Config()
         if prompt_generator is None:
-            prompt_generator = build_default_prompt_generator(config)
+            prompt_generator = build_default_prompt_generator()
         prompt_generator.goals = self.ai_goals
         prompt_generator.name = self.ai_name
         prompt_generator.role = self.ai_role
         prompt_generator.command_registry = self.command_registry
-        for plugin in config.plugins:
+        for plugin in cfg.plugins:
             if not plugin.can_handle_post_prompt():
                 continue
             prompt_generator = plugin.post_prompt(prompt_generator)
 
-        if config.execute_local_commands:
+        if cfg.execute_local_commands:
             # add OS info to prompt
             os_name = platform.system()
             os_info = (
@@ -166,5 +167,5 @@ class AIConfig:
         if self.api_budget > 0.0:
             full_prompt += f"\nIt takes money to let you run. Your API budget is ${self.api_budget:.3f}"
         self.prompt_generator = prompt_generator
-        full_prompt += f"\n\n{prompt_generator.generate_prompt_string(config)}"
+        full_prompt += f"\n\n{prompt_generator.generate_prompt_string()}"
         return full_prompt

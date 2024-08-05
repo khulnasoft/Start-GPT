@@ -4,28 +4,21 @@ from __future__ import annotations
 
 from typing import NoReturn
 
-from startgpt.agent.agent import Agent
-from startgpt.command_decorator import command
+from startgpt.commands.command import command
 from startgpt.logs import logger
 
 
 @command(
-    "goals_accomplished",
-    "Goals are accomplished and there is nothing left to do",
-    {
-        "reason": {
-            "type": "string",
-            "description": "A summary to the user of how the goals were accomplished",
-            "required": True,
-        }
-    },
+    "task_complete",
+    "Task Complete (Shutdown)",
+    '"reason": "<reason>"',
 )
-def task_complete(reason: str, agent: Agent) -> NoReturn:
+def task_complete(reason: str) -> NoReturn:
     """
     A function that takes in a string and exits the program
 
     Parameters:
-        reason (str): A summary to the user of how the goals were accomplished.
+        reason (str): The reason for shutting down.
     Returns:
         A result string from create chat completion. A list of suggestions to
             improve the code.

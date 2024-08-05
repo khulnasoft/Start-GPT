@@ -5,13 +5,16 @@ import requests
 import yaml
 from colorama import Fore, Style
 from git.repo import Repo
-from prompt_toolkit import ANSI, PromptSession
-from prompt_toolkit.history import InMemoryHistory
 
-from startgpt.config import Config
 from startgpt.logs import logger
 
-session = PromptSession(history=InMemoryHistory())
+# Use readline if available (for clean_input)
+try:
+    import readline
+except ImportError:
+    pass
+
+from startgpt.config import Config
 
 
 def batch(iterable, max_batch_length: int, overlap: int = 0):
@@ -23,10 +26,11 @@ def batch(iterable, max_batch_length: int, overlap: int = 0):
         yield iterable[i : i + max_batch_length]
 
 
-def clean_input(config: Config, prompt: str = "", talk=False):
+def clean_input(prompt: str = "", talk=False):
     try:
-        if config.chat_messages_enabled:
-            for plugin in config.plugins:
+        cfg = Config()
+        if cfg.chat_messages_enabled:
+            for plugin in cfg.plugins:
                 if not hasattr(plugin, "can_handle_user_input"):
                     continue
                 if not plugin.can_handle_user_input(user_input=prompt):
@@ -43,19 +47,19 @@ def clean_input(config: Config, prompt: str = "", talk=False):
                     "sure",
                     "alright",
                 ]:
-                    return config.authorise_key
+                    return cfg.authorise_key
                 elif plugin_response.lower() in [
                     "no",
                     "nope",
                     "n",
                     "negative",
                 ]:
-                    return config.exit_key
+                    return cfg.exit_key
                 return plugin_response
 
         # ask for input, default when just pressing Enter is y
         logger.info("Asking user via keyboard...")
-        answer = session.prompt(ANSI(prompt))
+        answer = input(prompt)
         return answer
     except KeyboardInterrupt:
         logger.info("You interrupted Start-GPT")

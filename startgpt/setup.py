@@ -17,8 +17,10 @@ from startgpt.prompts.default_prompts import (
     DEFAULT_USER_DESIRE_PROMPT,
 )
 
+CFG = Config()
 
-def prompt_user(config: Config) -> AIConfig:
+
+def prompt_user() -> AIConfig:
     """Prompt the user for input
 
     Returns:
@@ -44,7 +46,7 @@ def prompt_user(config: Config) -> AIConfig:
     )
 
     user_desire = utils.clean_input(
-        config, f"{Fore.LIGHTBLUE_EX}I want Start-GPT to{Style.RESET_ALL}: "
+        f"{Fore.LIGHTBLUE_EX}I want Start-GPT to{Style.RESET_ALL}: "
     )
 
     if user_desire == "":
@@ -57,11 +59,11 @@ def prompt_user(config: Config) -> AIConfig:
             Fore.GREEN,
             speak_text=True,
         )
-        return generate_aiconfig_manual(config)
+        return generate_aiconfig_manual()
 
     else:
         try:
-            return generate_aiconfig_automatic(user_desire, config)
+            return generate_aiconfig_automatic(user_desire)
         except Exception as e:
             logger.typewriter_log(
                 "Unable to automatically generate AI Config based on user desire.",
@@ -70,10 +72,10 @@ def prompt_user(config: Config) -> AIConfig:
                 speak_text=True,
             )
 
-            return generate_aiconfig_manual(config)
+            return generate_aiconfig_manual()
 
 
-def generate_aiconfig_manual(config: Config) -> AIConfig:
+def generate_aiconfig_manual() -> AIConfig:
     """
     Interactively create an AI configuration by prompting the user to provide the name, role, and goals of the AI.
 
@@ -98,7 +100,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     logger.typewriter_log(
         "Name your AI: ", Fore.GREEN, "For example, 'Entrepreneur-GPT'"
     )
-    ai_name = utils.clean_input(config, "AI Name: ")
+    ai_name = utils.clean_input("AI Name: ")
     if ai_name == "":
         ai_name = "Entrepreneur-GPT"
 
@@ -113,7 +115,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
         "For example, 'an AI designed to autonomously develop and run businesses with"
         " the sole goal of increasing your net worth.'",
     )
-    ai_role = utils.clean_input(config, f"{ai_name} is: ")
+    ai_role = utils.clean_input(f"{ai_name} is: ")
     if ai_role == "":
         ai_role = "an AI designed to autonomously develop and run businesses with the"
         " sole goal of increasing your net worth."
@@ -128,9 +130,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     logger.info("Enter nothing to load defaults, enter nothing when finished.")
     ai_goals = []
     for i in range(5):
-        ai_goal = utils.clean_input(
-            config, f"{Fore.LIGHTBLUE_EX}Goal{Style.RESET_ALL} {i+1}: "
-        )
+        ai_goal = utils.clean_input(f"{Fore.LIGHTBLUE_EX}Goal{Style.RESET_ALL} {i+1}: ")
         if ai_goal == "":
             break
         ai_goals.append(ai_goal)
@@ -149,7 +149,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     )
     logger.info("Enter nothing to let the AI run without monetary limit")
     api_budget_input = utils.clean_input(
-        config, f"{Fore.LIGHTBLUE_EX}Budget{Style.RESET_ALL}: $"
+        f"{Fore.LIGHTBLUE_EX}Budget{Style.RESET_ALL}: $"
     )
     if api_budget_input == "":
         api_budget = 0.0
@@ -165,7 +165,7 @@ def generate_aiconfig_manual(config: Config) -> AIConfig:
     return AIConfig(ai_name, ai_role, ai_goals, api_budget)
 
 
-def generate_aiconfig_automatic(user_prompt: str, config: Config) -> AIConfig:
+def generate_aiconfig_automatic(user_prompt) -> AIConfig:
     """Generates an AIConfig object from the given string.
 
     Returns:
@@ -179,14 +179,13 @@ def generate_aiconfig_automatic(user_prompt: str, config: Config) -> AIConfig:
     # Call LLM with the string as user input
     output = create_chat_completion(
         ChatSequence.for_model(
-            config.fast_llm_model,
+            CFG.fast_llm_model,
             [
                 Message("system", system_prompt),
                 Message("user", prompt_ai_config_automatic),
             ],
-        ),
-        config,
-    ).content
+        )
+    )
 
     # Debug LLM Output
     logger.debug(f"AI Config Generator Raw Output: {output}")

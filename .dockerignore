@@ -2,7 +2,6 @@
 *.template
 *.yaml
 *.yml
-!prompt_settings.yaml
 
 *.md
 *.png

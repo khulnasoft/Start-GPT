@@ -2,16 +2,16 @@
 
 import logging
 import sys
+from pathlib import Path
 
 from colorama import Fore, Style
 
-from scripts.install_plugin_deps import install_plugin_dependencies
 from startgpt.agent import Agent
+from startgpt.commands.command import CommandRegistry
 from startgpt.config import Config, check_openai_api_key
 from startgpt.configurator import create_config
 from startgpt.logs import logger
 from startgpt.memory.vector import get_memory
-from startgpt.models.command_registry import CommandRegistry
 from startgpt.plugins import scan_plugins
 from startgpt.prompts.prompt import DEFAULT_TRIGGERING_PROMPT, construct_main_ai_config
 from startgpt.utils import (
@@ -21,15 +21,7 @@ from startgpt.utils import (
     markdown_to_ansi_style,
 )
 from startgpt.workspace import Workspace
-
-COMMAND_CATEGORIES = [
-    "startgpt.commands.execute_code",
-    "startgpt.commands.file_operations",
-    "startgpt.commands.web_search",
-    "startgpt.commands.web_selenium",
-    "startgpt.app",
-    "startgpt.commands.task_statuses",
-]
+from scripts.install_plugin_deps import install_plugin_dependencies
 
 
 def run_start_gpt(
@@ -53,12 +45,11 @@ def run_start_gpt(
     logger.set_level(logging.DEBUG if debug else logging.INFO)
     logger.speak_mode = speak
 
-    config = Config()
+    cfg = Config()
     # TODO: fill in llm values here
-    check_openai_api_key(config)
+    check_openai_api_key()
 
     create_config(
-        config,
         continuous,
         continuous_limit,
         ai_settings,
@@ -74,17 +65,17 @@ def run_start_gpt(
         skip_news,
     )
 
-    if config.continuous_mode:
+    if cfg.continuous_mode:
         for line in get_legal_warning().split("\n"):
             logger.warn(markdown_to_ansi_style(line), "LEGAL:", Fore.RED)
 
-    if not config.skip_news:
+    if not cfg.skip_news:
         motd, is_new_motd = get_latest_bulletin()
         if motd:
             motd = markdown_to_ansi_style(motd)
             for motd_line in motd.split("\n"):
                 logger.info(motd_line, "NEWS:", Fore.GREEN)
-            if is_new_motd and not config.chat_messages_enabled:
+            if is_new_motd and not cfg.chat_messages_enabled:
                 input(
                     Fore.MAGENTA
                     + Style.BRIGHT
@@ -116,31 +107,55 @@ def run_start_gpt(
     # TODO: have this directory live outside the repository (e.g. in a user's
     #   home directory) and have it come in as a command line argument or part of
     #   the env file.
-    workspace_directory = Workspace.get_workspace_directory(config, workspace_directory)
+    if workspace_directory is None:
+        workspace_directory = Path(__file__).parent / "start_gpt_workspace"
+    else:
+        workspace_directory = Path(workspace_directory)
+    # TODO: pass in the ai_settings file and the env file and have them cloned into
+    #   the workspace directory so we can bind them to the agent.
+    workspace_directory = Workspace.make_workspace(workspace_directory)
+    cfg.workspace_path = str(workspace_directory)
 
     # HACK: doing this here to collect some globals that depend on the workspace.
-    Workspace.build_file_logger_path(config, workspace_directory)
+    file_logger_path = workspace_directory / "file_logger.txt"
+    if not file_logger_path.exists():
+        with file_logger_path.open(mode="w", encoding="utf-8") as f:
+            f.write("File Operation Logger ")
 
-    config.set_plugins(scan_plugins(config, config.debug_mode))
+    cfg.file_logger_path = str(file_logger_path)
+
+    cfg.set_plugins(scan_plugins(cfg, cfg.debug_mode))
     # Create a CommandRegistry instance and scan default folder
     command_registry = CommandRegistry()
 
+    command_categories = [
+        "startgpt.commands.analyze_code",
+        "startgpt.commands.audio_text",
+        "startgpt.commands.execute_code",
+        "startgpt.commands.file_operations",
+        "startgpt.commands.git_operations",
+        "startgpt.commands.google_search",
+        "startgpt.commands.image_gen",
+        "startgpt.commands.improve_code",
+        "startgpt.commands.web_selenium",
+        "startgpt.commands.write_tests",
+        "startgpt.app",
+        "startgpt.commands.task_statuses",
+    ]
     logger.debug(
-        f"The following command categories are disabled: {config.disabled_command_categories}"
+        f"The following command categories are disabled: {cfg.disabled_command_categories}"
     )
-    enabled_command_categories = [
-        x for x in COMMAND_CATEGORIES if x not in config.disabled_command_categories
+    command_categories = [
+        x for x in command_categories if x not in cfg.disabled_command_categories
     ]
 
-    logger.debug(
-        f"The following command categories are enabled: {enabled_command_categories}"
-    )
+    logger.debug(f"The following command categories are enabled: {command_categories}")
 
-    for command_category in enabled_command_categories:
+    for command_category in command_categories:
         command_registry.import_commands(command_category)
 
     ai_name = ""
-    ai_config = construct_main_ai_config(config)
+    ai_config = construct_main_ai_config()
     ai_config.command_registry = command_registry
     if ai_config.ai_name:
         ai_name = ai_config.ai_name
@@ -149,22 +164,21 @@ def run_start_gpt(
     next_action_count = 0
 
     # add chat plugins capable of report to logger
-    if config.chat_messages_enabled:
-        for plugin in config.plugins:
+    if cfg.chat_messages_enabled:
+        for plugin in cfg.plugins:
             if hasattr(plugin, "can_handle_report") and plugin.can_handle_report():
                 logger.info(f"Loaded plugin into logger: {plugin.__class__.__name__}")
                 logger.chat_plugins.append(plugin)
 
     # Initialize memory and make sure it is empty.
     # this is particularly important for indexing and referencing pinecone memory
-    memory = get_memory(config)
-    memory.clear()
+    memory = get_memory(cfg, init=True)
     logger.typewriter_log(
         "Using memory of type:", Fore.GREEN, f"{memory.__class__.__name__}"
     )
-    logger.typewriter_log("Using Browser:", Fore.GREEN, config.selenium_web_browser)
-    system_prompt = ai_config.construct_full_prompt(config)
-    if config.debug_mode:
+    logger.typewriter_log("Using Browser:", Fore.GREEN, cfg.selenium_web_browser)
+    system_prompt = ai_config.construct_full_prompt()
+    if cfg.debug_mode:
         logger.typewriter_log("Prompt:", Fore.GREEN, system_prompt)
 
     agent = Agent(
@@ -172,10 +186,9 @@ def run_start_gpt(
         memory=memory,
         next_action_count=next_action_count,
         command_registry=command_registry,
+        config=ai_config,
         system_prompt=system_prompt,
         triggering_prompt=DEFAULT_TRIGGERING_PROMPT,
         workspace_directory=workspace_directory,
-        ai_config=ai_config,
-        config=config,
     )
     agent.start_interaction_loop()

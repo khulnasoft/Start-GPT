@@ -5,79 +5,17 @@ import subprocess
 from pathlib import Path
 
 import docker
-from docker.errors import DockerException, ImageNotFound
-from docker.models.containers import Container as DockerContainer
+from docker.errors import ImageNotFound
 
-from startgpt.agent.agent import Agent
-from startgpt.command_decorator import command
+from startgpt.commands.command import command
 from startgpt.config import Config
 from startgpt.logs import logger
 
-ALLOWLIST_CONTROL = "allowlist"
-DENYLIST_CONTROL = "denylist"
+CFG = Config()
 
 
-@command(
-    "execute_python_code",
-    "Creates a Python file and executes it",
-    {
-        "code": {
-            "type": "string",
-            "description": "The Python code to run",
-            "required": True,
-        },
-        "name": {
-            "type": "string",
-            "description": "A name to be given to the python file",
-            "required": True,
-        },
-    },
-)
-def execute_python_code(code: str, name: str, agent: Agent) -> str:
-    """Create and execute a Python file in a Docker container and return the STDOUT of the
-    executed code. If there is any data that needs to be captured use a print statement
-
-    Args:
-        code (str): The Python code to run
-        name (str): A name to be given to the Python file
-
-    Returns:
-        str: The STDOUT captured from the code when it ran
-    """
-    ai_name = agent.ai_name
-    code_dir = agent.workspace.get_path(Path(ai_name, "executed_code"))
-    os.makedirs(code_dir, exist_ok=True)
-
-    if not name.endswith(".py"):
-        name = name + ".py"
-
-    # The `name` arg is not covered by Agent._resolve_pathlike_command_args(),
-    # so sanitization must be done here to prevent path traversal.
-    file_path = agent.workspace.get_path(code_dir / name)
-    if not file_path.is_relative_to(code_dir):
-        return "Error: 'name' argument resulted in path traversal, operation aborted"
-
-    try:
-        with open(file_path, "w+", encoding="utf-8") as f:
-            f.write(code)
-
-        return execute_python_file(str(file_path), agent)
-    except Exception as e:
-        return f"Error: {str(e)}"
-
-
-@command(
-    "execute_python_file",
-    "Executes an existing Python file",
-    {
-        "filename": {
-            "type": "string",
-            "description": "The name of te file to execute",
-            "required": True,
-        },
-    },
-)
-def execute_python_file(filename: str, agent: Agent) -> str:
+@command("execute_python_file", "Execute Python File", '"filename": "<filename>"')
+def execute_python_file(filename: str) -> str:
     """Execute a Python file in a Docker container and return the output
 
     Args:
@@ -86,26 +24,17 @@ def execute_python_file(filename: str, agent: Agent) -> str:
     Returns:
         str: The output of the file
     """
-    logger.info(
-        f"Executing python file '{filename}' in working directory '{agent.config.workspace_path}'"
-    )
+    logger.info(f"Executing file '{filename}'")
 
     if not filename.endswith(".py"):
         return "Error: Invalid file type. Only .py files are allowed."
 
-    file_path = Path(filename)
-    if not file_path.is_file():
-        # Mimic the response that you get from the command line so that it's easier to identify
-        return (
-            f"python: can't open file '{filename}': [Errno 2] No such file or directory"
-        )
+    if not os.path.isfile(filename):
+        return f"Error: File '{filename}' does not exist."
 
     if we_are_running_in_a_docker_container():
         result = subprocess.run(
-            ["python", str(file_path)],
-            capture_output=True,
-            encoding="utf8",
-            cwd=agent.config.workspace_path,
+            ["python", filename], capture_output=True, encoding="utf8"
         )
         if result.returncode == 0:
             return result.stdout
@@ -135,12 +64,11 @@ def execute_python_file(filename: str, agent: Agent) -> str:
                     logger.info(f"{status}: {progress}")
                 elif status:
                     logger.info(status)
-
-        container: DockerContainer = client.containers.run(
+        container = client.containers.run(
             image_name,
-            ["python", str(file_path.relative_to(agent.workspace.root))],
+            ["python", str(Path(filename).relative_to(CFG.workspace_path))],
             volumes={
-                agent.config.workspace_path: {
+                CFG.workspace_path: {
                     "bind": "/workspace",
                     "mode": "ro",
                 }
@@ -149,7 +77,7 @@ def execute_python_file(filename: str, agent: Agent) -> str:
             stderr=True,
             stdout=True,
             detach=True,
-        )  # type: ignore
+        )
 
         container.wait()
         logs = container.logs().decode("utf-8")
@@ -160,7 +88,7 @@ def execute_python_file(filename: str, agent: Agent) -> str:
 
         return logs
 
-    except DockerException as e:
+    except docker.errors.DockerException as e:
         logger.warn(
             "Could not run the script in a container. If you haven't already, please install Docker https://docs.docker.com/get-docker/"
         )
@@ -170,43 +98,42 @@ def execute_python_file(filename: str, agent: Agent) -> str:
         return f"Error: {str(e)}"
 
 
-def validate_command(command: str, config: Config) -> bool:
+def validate_command(command: str) -> bool:
     """Validate a command to ensure it is allowed
 
     Args:
         command (str): The command to validate
-        config (Config): The config to use to validate the command
 
     Returns:
         bool: True if the command is allowed, False otherwise
     """
-    if not command:
+    tokens = command.split()
+
+    if not tokens:
         return False
 
-    command_name = command.split()[0]
+    if CFG.deny_commands and tokens[0] not in CFG.deny_commands:
+        return False
 
-    if config.shell_command_control == ALLOWLIST_CONTROL:
-        return command_name in config.shell_allowlist
-    else:
-        return command_name not in config.shell_denylist
+    for keyword in CFG.allow_commands:
+        if keyword in tokens:
+            return True
+    if CFG.allow_commands:
+        return False
+
+    return True
 
 
 @command(
     "execute_shell",
-    "Executes a Shell Command, non-interactive commands only",
-    {
-        "command_line": {
-            "type": "string",
-            "description": "The command line to execute",
-            "required": True,
-        }
-    },
-    enabled=lambda config: config.execute_local_commands,
-    disabled_reason="You are not allowed to run local shell commands. To execute"
+    "Execute Shell Command, non-interactive commands only",
+    '"command_line": "<command_line>"',
+    CFG.execute_local_commands,
+    "You are not allowed to run local shell commands. To execute"
     " shell commands, EXECUTE_LOCAL_COMMANDS must be set to 'True' "
     "in your config file: .env - do not attempt to bypass the restriction.",
 )
-def execute_shell(command_line: str, agent: Agent) -> str:
+def execute_shell(command_line: str) -> str:
     """Execute a shell command and return the output
 
     Args:
@@ -215,14 +142,14 @@ def execute_shell(command_line: str, agent: Agent) -> str:
     Returns:
         str: The output of the command
     """
-    if not validate_command(command_line, agent.config):
+    if not validate_command(command_line):
         logger.info(f"Command '{command_line}' not allowed")
         return "Error: This Shell Command is not allowed."
 
     current_dir = Path.cwd()
     # Change dir into workspace if necessary
-    if not current_dir.is_relative_to(agent.config.workspace_path):
-        os.chdir(agent.config.workspace_path)
+    if not current_dir.is_relative_to(CFG.workspace_path):
+        os.chdir(CFG.workspace_path)
 
     logger.info(
         f"Executing command '{command_line}' in working directory '{os.getcwd()}'"
@@ -239,20 +166,14 @@ def execute_shell(command_line: str, agent: Agent) -> str:
 
 @command(
     "execute_shell_popen",
-    "Executes a Shell Command, non-interactive commands only",
-    {
-        "query": {
-            "type": "string",
-            "description": "The search query",
-            "required": True,
-        }
-    },
-    lambda config: config.execute_local_commands,
+    "Execute Shell Command, non-interactive commands only",
+    '"command_line": "<command_line>"',
+    CFG.execute_local_commands,
     "You are not allowed to run local shell commands. To execute"
     " shell commands, EXECUTE_LOCAL_COMMANDS must be set to 'True' "
     "in your config. Do not attempt to bypass the restriction.",
 )
-def execute_shell_popen(command_line, agent: Agent) -> str:
+def execute_shell_popen(command_line) -> str:
     """Execute a shell command with Popen and returns an english description
     of the event and the process id
 
@@ -262,14 +183,14 @@ def execute_shell_popen(command_line, agent: Agent) -> str:
     Returns:
         str: Description of the fact that the process started and its id
     """
-    if not validate_command(command_line, agent.config):
+    if not validate_command(command_line):
         logger.info(f"Command '{command_line}' not allowed")
         return "Error: This Shell Command is not allowed."
 
     current_dir = os.getcwd()
     # Change dir into workspace if necessary
-    if agent.config.workspace_path not in current_dir:
-        os.chdir(agent.config.workspace_path)
+    if CFG.workspace_path not in current_dir:
+        os.chdir(CFG.workspace_path)
 
     logger.info(
         f"Executing command '{command_line}' in working directory '{os.getcwd()}'"

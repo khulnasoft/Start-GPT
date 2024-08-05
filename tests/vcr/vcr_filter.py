@@ -3,7 +3,7 @@ import os
 import re
 from typing import Any, Dict, List
 
-PROXY = os.environ.get("PROXY")
+from tests.conftest import PROXY
 
 REPLACEMENTS: List[Dict[str, str]] = [
     {
@@ -19,7 +19,6 @@ REPLACEMENTS: List[Dict[str, str]] = [
 ALLOWED_HOSTNAMES: List[str] = [
     "api.openai.com",
     "localhost:50337",
-    "duckduckgo.com",
 ]
 
 if PROXY:
